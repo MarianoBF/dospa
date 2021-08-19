@@ -22,6 +22,16 @@ body {
     overflow-x: scroll;
 }
 
+.potContainer {
+    max-width: 25vw;
+    height: 25vh;
+}
+
+.potContainer img {
+    max-width: 30vw;
+    max-height: 25vh;
+}
+
 .buttons {
     max-width: 90vw;
     margin: 2vh auto;
@@ -108,6 +118,14 @@ body {
     width: 5rem;
     opacity: 0.75;
     background: #F6EDD9;
+}
+
+.menu {
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (min-width: 768px) {

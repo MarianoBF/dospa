@@ -1,107 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
-      rel="stylesheet"
-    />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Juego de cartas</title>
-  </head>
-  <body>
-    <div id="humanContainer" class="cardContainer"></div>
 
-    <div id="buttons" class="buttons">
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Juego de cartas</title>
+</head>
+
+<body>
+  <div id="humanContainer" class="cardContainer"></div>
+
+  <div class="menu">
+
       <button class="playButton" id="start">Iniciar nuevo partido</button>
-      <button class="playButton" id="deal" disabled>Repartir mano</button>
-      <button class="playButton" id="change" disabled>Cambiar cartas</button>
+      <!-- <button class="playButton" id="deal" disabled>Levantar carta</button> -->
+      <!-- <button class="playButton" id="change" disabled>Cambiar cartas</button>
       <button class="playButton" id="score" disabled>Mostrar cartas y puntaje</button>
-      <button class="playButton" id="close" disabled>Cerrar mano</button>
+      <button class="playButton" id="close" disabled>Cerrar mano</button> -->
       <div class="messageContainer">
         <h2>Estado del Juego</h2>
         <div class="messageDisplay" id="statusContainer">
           <p id="status"></p>
         </div>
       </div>
-      <div class="messageContainer">
-        <h2>&nbsp;&nbsp;&nbsp;Manos&nbsp;&nbsp;&nbsp;</h2>
-        <label
-          >Humano
-          <input
-            class="counter"
-            id="humanRoundCounter"
-            type="text"
-            value="0"
-            readonly
-          />
-        </label>
-        <label
-          >PC
-          <input
-            class="counter"
-            id="pcRoundCounter"
-            type="text"
-            value="0"
-            readonly
-          />
-        </label>
-        <label
-          >Empates
-          <input
-            class="counter"
-            id="tiedRoundCounter"
-            type="text"
-            value="0"
-            readonly
-          />
-        </label>
+      <div id="potContainer" class="potContainer">
+        <img src="images/back.png">
       </div>
       <div class="messageContainer">
         <h2>Partidos</h2>
-        <label
-          >Humano
-          <input
-            class="counter"
-            id="humanMatchCounter"
-            type="text"
-            value="0"
-            readonly
-          />
+        <label>Humano
+          <input class="counter" id="humanMatchCounter" type="text" value="0" readonly />
         </label>
-        <label
-          >PC
-          <input
-            class="counter"
-            id="pcMatchCounter"
-            type="text"
-            value="0"
-            readonly
-          />
+        <label>PC
+          <input class="counter" id="pcMatchCounter" type="text" value="0" readonly />
         </label>
-        <label
-          >Empates
-          <input
-            class="counter"
-            id="tiedMatchCounter"
-            type="text"
-            value="0"
-            readonly
-          />
+        <label>Empates
+          <input class="counter" id="tiedMatchCounter" type="text" value="0" readonly />
         </label>
       </div>
       <button id="rules" class="auxButton">Mostrar Reglas</button>
-      <button id="save_load" class="auxButton">Cargar</button>
-    </div>
-    <div id="pcContainer" class="cardContainer"></div>
-    <script src="./scripts/classes/Deck.js"></script>
-    <script src="./scripts/functions.js"></script>
-    <script src="./scripts/classes/Player.js"></script>
-    <script src="./scripts/classes/Match.js"></script>
-    <script src="./scripts/index.js"></script>
-  </body>
+      <!-- <button id="save_load" class="auxButton">Cargar</button> -->
+  </div>
+  <div id="pcContainer" class="cardContainer"></div>
+  <script src="./scripts/classes/Deck.js"></script>
+  <script src="./scripts/functions.js"></script>
+  <script src="./scripts/classes/Player.js"></script>
+  <script src="./scripts/classes/Match.js"></script>
+  <script src="./scripts/index.js"></script>
+</body>
+
 </html>

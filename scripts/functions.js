@@ -59,11 +59,9 @@ function addScore(hand) {
 
 function showRules() {
   alert(
-    "Se suman los puntajes de cada carta numérica, las figuras (J,Q,K) suman 10 puntos y el As 15 puntos.\n" +
-      "Podés cambiar algunas cartas en la ronda intermedia. \n" +
-      "El mejor de 3 manos, gana. \n" +
-      "Al terminar cada ronda podés grabar."
-  );
+      `Dos para el Lobo old school. 
+      Clickeá en el mazo para levantar otra!`
+    );
 }
 
 function saverLoader() {
