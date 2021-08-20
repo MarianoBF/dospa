@@ -14,6 +14,7 @@ async function getFullDeck() {
 
 async function auxGetCards(number) {
   let id = deck.getId();
+  let errors = false;
   try {
     let data = await fetch(
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
@@ -30,7 +31,9 @@ async function auxGetCards(number) {
       "No se pudieron traer las cartas, hubo un problema en el servidor. Reintentando..."
     );
     match.errors++;
-    auxGetCards();
+    errors = match.errors <5 ? true : false;
+  } finally {
+    if (errors) {auxGetCards()};
   }
   return cards.cards;
 }
@@ -85,3 +88,10 @@ function showRules() {
     );
 }
 
+function checkCard(card, ref) {
+  console.log(ref, card)
+  const [numberref, suiteref] = ref.split()
+  const [number, suite] = card.split()
+  console.log(numberref, suiteref)
+
+}

@@ -21,7 +21,8 @@ class Deck {
   }
 
   getTopOfDiscardPile() {
-  return this.discard[this.discard.length - 1];        
+    console.log(this.discard);
+    return this.discard[this.discard.length - 1];        
   }
 
   sendToDiscard(card) {

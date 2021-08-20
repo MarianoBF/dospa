@@ -48,12 +48,23 @@ class Player {
   }
 
   sendToDiscard(card) {
-    auxSendToPile(card.code);
-    let index = this.hand.findIndex(handCard=>handCard.code === card);
-    this.hand.splice(index, 1);
-    document.getElementById(card.code).remove();
-    console.log(this.hand)
-    deck.sendToDiscard(card)
+    // debugger;
+    const ref = deck.getTopOfDiscardPile()
+    const result = checkCard(ref, card)
+      if (result) {
+      auxSendToPile(card.code);
+      let index = this.hand.findIndex(handCard=>handCard.code === card);
+      this.hand.splice(index, 1);
+      document.getElementById(card.code).remove();
+      console.log(this.hand)
+      deck.sendToDiscard(card)
+      if (this.hand.length === 0) {
+        match.endMatch("Human");
+      }}
+  }
+
+  PCDiscards(card){
+
   }
 
   showBackOfCards() {
