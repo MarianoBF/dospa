@@ -47,12 +47,13 @@ class Player {
     drawCards(this.hand, humanContainer, "human");
   }
 
-  sendToPot(card) {
-    auxSendToPile(card);
+  sendToDiscard(card) {
+    auxSendToPile(card.code);
     let index = this.hand.findIndex(handCard=>handCard.code === card);
     this.hand.splice(index, 1);
-    document.getElementById(card).remove();
+    document.getElementById(card.code).remove();
     console.log(this.hand)
+    deck.sendToDiscard(card)
   }
 
   showBackOfCards() {

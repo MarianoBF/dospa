@@ -5,17 +5,15 @@ let deck = new Deck
 deck.startMatch()
 
 //Referencias
+const discardContainer = document.getElementById("discardContainer")
+const discardImage = document.getElementById("discardImage")
 const pcContainer = document.getElementById("pcContainer");
 const humanContainer = document.getElementById(
   "humanContainer"
 );
 const start = document.getElementById("start");
-// const deal = document.getElementById("deal");
-// const change = document.getElementById("change");
-// const score = document.getElementById("score");
 const close = document.getElementById("close");
 const rules = document.getElementById("rules");
-// const save_load = document.getElementById("save_load");
 const gameStatus = document.getElementById("status");
 const humanMatchCounter = document.getElementById("humanMatchCounter");
 const pcMatchCounter = document.getElementById("pcMatchCounter");

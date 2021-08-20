@@ -57,8 +57,8 @@ function drawCards(cartas, container, type) {
     if (type === "human") {
       img.id = carta.code;
       img.addEventListener("click", () => {
-      Human.sendToPot(carta.code)
-      console.log("sendToPot", carta.code)});
+      Human.sendToDiscard(carta)
+ });
     }
     container.append(img);
   });
