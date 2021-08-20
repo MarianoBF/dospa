@@ -35,24 +35,23 @@ class Player {
   }
 
   showHumanCards() {
-    drawCards(this.hand, humanContainer);
+    drawCards(this.hand, humanContainer, "human");
   }
 
-  sendToPot() {
-    auxSendToPile(this.hand[0].code);
-  }
-
-  calcPoints() {
-    this.roundScore = addScore(this.hand);
-    this.score += this.roundScore;
+  sendToPot(card) {
+    auxSendToPile(card);
+    let index = this.hand.findIndex(handCard=>handCard.code === card);
+    this.hand.splice(index, 1);
+    document.getElementById(card).remove();
+    console.log(this.hand)
   }
 
   showBackOfCards() {
-    drawCards(cardsBack, pcContainer);
+    drawCards(cardsBack, pcContainer, "pc");
   }
 
   showPCCards() {
-    drawCards(this.hand, pcContainer);
+    drawCards(this.hand, pcContainer, "pc");
   }
 
   cleanUp() {

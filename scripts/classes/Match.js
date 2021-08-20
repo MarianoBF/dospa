@@ -12,18 +12,15 @@ class Match {
   startRound() {
     pcContainer.innerHTML = "";
     humanContainer.innerHTML = "";
+    start.disabled = true;
     Human.getCards();
     AI.getCards();
-    gameStatus.innerText = "Listo para repartir";
-    start.disabled = true;
-  }
+    setTimeout(() => {
+      Human.showHumanCards();
+      AI.showBackOfCards();
+      gameStatus.innerText = "Cartas en la mesa";
+    },2500)
 
-  showCards() {
-    Human.showHumanCards();
-    AI.showBackOfCards();
-    gameStatus.innerText = "Cartas en la mesa";
-    deal.disabled = true;
-    change.disabled = false;
   }
 
   changecards() {

@@ -50,10 +50,16 @@ async function auxSendToPile(card) {
   return pot.cards;
 }
 
-function drawCards(cartas, container) {
+function drawCards(cartas, container, type) {
   cartas.forEach(carta => {
     let img = document.createElement("IMG");
     img.src = carta.image;
+    if (type === "human") {
+      img.id = carta.code;
+      img.addEventListener("click", () => {
+      Human.sendToPot(carta.code)
+      console.log("sendToPot", carta.code)});
+    }
     container.append(img);
   });
 }
