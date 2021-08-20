@@ -46,39 +46,6 @@ class Match {
     score.disabled = false;
   }
 
-  compareCards() {
-    let result = "";
-    let winner = "";
-    Human.calcPoints();
-    AI.calcPoints();
-    if (Human.getRoundPoints() > AI.getRoundPoints()) {
-      winner = Human.getName();
-      Human.roundsWon++;
-    } else if (AI.getRoundPoints() > Human.getRoundPoints()) {
-      AI.roundsWon++;
-      winner = AI.getName();
-    } else {
-      Human.roundsTied++;
-      AI.roundsTied++;
-      winner = "Empate";
-    }
-    winner === "Empate"
-      ? (winner = "\n Nadie gana.")
-      : (winner = "\n El ganador es " + winner);
-    result =
-      " El puntaje del jugador Humano es " +
-      Human.getRoundPoints() +
-      " y el del jugador PC es " +
-      AI.getRoundPoints() +
-      winner;
-    gameStatus.innerText = result;
-    score.disabled = true;
-    close.disabled = false;
-    pcContainer.innerHTML = "";
-    AI.showPCCards();
-    save_load.disabled = false;
-  }
-
   endRound() {
     gameStatus.innerText = "Preparando siguiente mano...";
     Human.cleanUp();
@@ -139,12 +106,6 @@ class Match {
     tiedMatchCounter.value = Human.matchesTied;
 
     gameStatus.innertext = message;
-    close.disabled = true;
     start.disabled = false;
-    AI.roundsWon = 0;
-    Human.roundsWon = 0;
-    AI.roundsTied = 0;
-    Human.roundsTied = 0;
-    match.roundsPlayed = 0;
   }
 }

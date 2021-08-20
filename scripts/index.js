@@ -41,11 +41,7 @@ const cardsBack = [
 ];
 
 //Event listeners
-// save_load.addEventListener("click", () => saverLoader());
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
-// change.addEventListener("click", ()=>match.changecards());
-// deal.addEventListener("click", () => match.showCards());
-// score.addEventListener("click", () => match.compareCards());
 pot.addEventListener("click", () => Human.sendToPot());
 
