@@ -17,4 +17,12 @@ class Deck {
       })
       .catch(error => console.log(error));
   }
+
+  getTopOfPile() {
+        
+  }
+
+  shufflePile(){
+
+  }
 }

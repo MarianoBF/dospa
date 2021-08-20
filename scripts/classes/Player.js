@@ -38,6 +38,10 @@ class Player {
     drawCards(this.hand, humanContainer);
   }
 
+  sendToPot() {
+    auxSendToPile(this.hand[0].code);
+  }
+
   calcPoints() {
     this.roundScore = addScore(this.hand);
     this.score += this.roundScore;

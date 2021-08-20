@@ -35,6 +35,21 @@ async function auxGetCards(number) {
   return cards.cards;
 }
 
+async function auxSendToPile(card) {
+  console.log("card to pot", card)
+  let id = deck.getId();
+  try {
+    let data = await fetch(
+      `https://deckofcardsapi.com/api/deck/${id}/pile/pot/add/?cards=${card}`
+    );
+    let pot = await data.json();
+    console.log(pot)
+  } catch (error) {
+    console.log(error) 
+  }
+  return pot.cards;
+}
+
 function drawCards(cartas, container) {
   cartas.forEach(carta => {
     let img = document.createElement("IMG");

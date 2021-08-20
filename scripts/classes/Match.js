@@ -10,18 +10,12 @@ class Match {
   }
 
   startRound() {
-    humanRoundCounter.value = 0;
-    pcRoundCounter.value = 0;
-    tiedRoundCounter.value = 0;
     pcContainer.innerHTML = "";
     humanContainer.innerHTML = "";
     Human.getCards();
     AI.getCards();
     gameStatus.innerText = "Listo para repartir";
     start.disabled = true;
-    deal.disabled = false;
-    save_load.disabled = true;
-    save_load.innerText = "Guardar";
   }
 
   showCards() {
@@ -78,9 +72,6 @@ class Match {
       AI.getRoundPoints() +
       winner;
     gameStatus.innerText = result;
-    humanRoundCounter.value = Human.roundsWon;
-    pcRoundCounter.value = AI.roundsWon;
-    tiedRoundCounter.value = Human.roundsTied;
     score.disabled = true;
     close.disabled = false;
     pcContainer.innerHTML = "";
