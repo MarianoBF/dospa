@@ -43,5 +43,5 @@ const cardsBack = [
 //Event listeners
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
-pot.addEventListener("click", () => deck.getFromDeck());
+pot.addEventListener("click", () => Human.getFromDeck(1));
 

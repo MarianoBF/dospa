@@ -27,6 +27,12 @@ body {
     height: 25vh;
 }
 
+.potContainer p {
+    color: #FFF;
+    text-align: center;
+    margin-top: 1px;
+}
+
 .potContainer img {
     max-width: 30vw;
     max-height: 25vh;

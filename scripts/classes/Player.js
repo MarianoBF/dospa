@@ -19,9 +19,18 @@ class Player {
     this.matchesTied = 0;
   }
 
+  // TODO change to GET INITIAL CARDS?
   getCards() {
     auxGetCards(5).then(hand => {
       this.hand = hand;
+    });
+  }
+
+  getFromDeck(cards = 1) {
+    auxGetCards(cards).then(newCards => {
+      this.hand = [...this.hand, ...newCards];
+      humanContainer.innerHTML = "";
+      this.showHumanCards();
     });
   }
 
