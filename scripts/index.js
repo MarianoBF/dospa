@@ -1,9 +1,7 @@
 let Human = new Player("Humano", true);
 let AI = new Player("PC", false);
 let match = new Match();
-let deck = new Deck
 let helpMode = false;
-// deck.startMatch()
 
 //Referencias
 const discardContainer = document.getElementById("discardContainer")

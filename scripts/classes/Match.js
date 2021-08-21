@@ -18,38 +18,40 @@ class Match {
   }
 
   startRound() {
+    start.disabled = true;
     getDecks().then(res => this.deck = res);
     setTimeout(() => {
-      console.log(this.deck)
       this.cards = this.deck.cards
-      console.log(this.cards)
       pot.style.display = "initial";
       discard.style.display = "initial";
       pcContainer.innerHTML = "";
       humanContainer.innerHTML = "";
-      start.disabled = true;
       Human.populateHand(this.cards.splice(0,5))
       AI.populateHand(this.cards.splice(0,5))
-      console.log("remaning cards", this.cards)
-      // Human.getCards();
-      // AI.getCards();
-  
       Human.showHumanCards();
       // AI.showBackOfCards();
       AI.showPCCards();
       gameStatus.innerText = "Cartas en la mesa, ¡juegue!";
-      auxGetCards(1).then(card => {
-        deck.sendToDiscard(card[0]);
-      })
+      this.sendToDiscard(this.cards.pop());
+      
     },2500)
-}
+  }
+
+  sendToDiscard(card) {
+    this.discard.push(card)
+    discardImage.src = card.image;
+  }
+
+  getTopOfDiscardPile() {
+    return this.discard[this.discard.length - 1];        
+  }
 
   getFromPot() {
-    Human.getFromDeck(1);
+    Human.updateHand([this.cards.pop()])
     Human.showHumanCards();
     // AI.showBackOfCards();
-    AI.showPCCards();
     AI.AIPlay();
+    AI.showPCCards();
   }
 
   play(carta) {
@@ -69,10 +71,13 @@ class Match {
   }
 
   cleanup() {
+    gameStatus.innerText = "Terminó el partido, ¿querés jugar otro?";
     pcContainer.innerHTML = "";
     humanContainer.innerHTML = "";
-    start.disabled = false;
+    pot.style.display = "none";
+    discard.style.display = "none";
     Human.cleanUp();
     AI.cleanUp();
+    start.disabled = false;
   }
 }

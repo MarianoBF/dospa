@@ -19,33 +19,15 @@ class Player {
     this.matchesTied = 0;
   }
 
-  // TODO change to GET INITIAL CARDS?
-  getCards() {
-    auxGetCards(5).then(hand => {
-      this.hand = hand;
-    });
-  }
-
   populateHand(cards) {
     this.hand = [...cards]
   }
 
-  getFromDeck(cards = 1) {
-    auxGetCards(cards).then(newCards => {
-      this.hand = [...this.hand, ...newCards];
+  updateHand(cards) {
+      this.hand = [...this.hand, ...cards];
       if (this.hand.length > 12) {
         match.endMatchLose(this.name);
-      }
-    });
-  }
-
-  updateCards(number) {
-    auxGetCards(number).then(newCards => {
-      this.hand = this.hand.sort((a, b) => 0.5 - Math.random())
-      this.hand.splice(0,number)
-      this.hand = [...this.hand, ...newCards];
-      this.showHumanCards(); 
-    });
+      };
   }
 
   showHumanCards() {
@@ -54,14 +36,13 @@ class Player {
   }
 
   sendToDiscard(card) {
-    const ref = deck.getTopOfDiscardPile()
+    const ref = match.getTopOfDiscardPile()
     const result = checkCard(card, ref)
       if (result) {
-      auxSendToPile(card.code);
       let index = this.hand.findIndex(handCard=>handCard.code === card);
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
-      deck.sendToDiscard(card)
+      match.sendToDiscard(card)
       gameStatus.innerText = "¡Sigue!";
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
@@ -76,20 +57,19 @@ class Player {
 
   AIPlay(){
     console.log("my turn");
-    const ref = deck.getTopOfDiscardPile();
+    const ref = match.getTopOfDiscardPile();
     const card = this.hand.find(handCard => checkCard(handCard, ref));
     if (card) {
-      auxSendToPile(card.code);
       let index = this.hand.findIndex(handCard=>handCard.code === card.code);
       this.hand.splice(index, 1);
-      deck.sendToDiscard(card);
+      match.sendToDiscard(card);
       gameStatus.innerText = "¡Sigue!";
       pcContainer.removeChild(pcContainer.lastElementChild);
       if (this.hand.length === 0) {
         match.endMatchWin("PC");
       }
     } else {
-      this.getFromDeck(1);
+      match.getFromPot();
     }
     if (helpMode) { 
       gameStatus.innerText = "Turno Humano";
