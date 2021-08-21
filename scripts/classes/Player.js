@@ -29,8 +29,7 @@ class Player {
   getFromDeck(cards = 1) {
     auxGetCards(cards).then(newCards => {
       this.hand = [...this.hand, ...newCards];
-      humanContainer.innerHTML = "";
-      this.showHumanCards();
+      this.showHumanCards();     
     });
   }
 
@@ -44,13 +43,14 @@ class Player {
   }
 
   showHumanCards() {
+    humanContainer.innerHTML = "";
     drawCards(this.hand, humanContainer, "human");
   }
 
   sendToDiscard(card) {
     // debugger;
     const ref = deck.getTopOfDiscardPile()
-    const result = checkCard(ref, card)
+    const result = checkCard(card, ref)
       if (result) {
       auxSendToPile(card.code);
       let index = this.hand.findIndex(handCard=>handCard.code === card);
@@ -58,9 +58,13 @@ class Player {
       document.getElementById(card.code).remove();
       console.log(this.hand)
       deck.sendToDiscard(card)
+      gameStatus.innerText = "¡Sigue!";
       if (this.hand.length === 0) {
         match.endMatch("Human");
       }}
+      else {
+        gameStatus.innerText = "¡Jugada no válida!";
+      }
   }
 
   PCDiscards(card){

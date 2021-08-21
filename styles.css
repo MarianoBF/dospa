@@ -19,7 +19,8 @@ body {
     display: flex;
     align-items: center;
     height: 15vh;
-    overflow-x: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .potContainer {
@@ -128,6 +129,7 @@ body {
 
 .menu {
     height: 25vh;
+    margin: 25px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -151,15 +153,12 @@ body {
     }
 
     .cardContainer img {
-        max-width: 15vw;
-        max-height: 20vh;
+        max-width: 10vw;
         margin: 0;
     }
     
     .cardContainer {
         height: 20vh;
-        flex-wrap: wrap;
-        overflow-x: unset;
         justify-content: space-around;
     }
 }
@@ -184,17 +183,9 @@ body {
     .button {
         height: 15vh;
     }
-
-    .cardContainer img {
-        max-width: 15vw;
-        max-height: 25vh;
-        margin: 0;
-    }
-    
+   
     .cardContainer {
         height: 25vh;
-        flex-wrap: wrap;
-        overflow-x: unset;
-        justify-content: space-around;
+        justify-content: space-around;       
     }
 }

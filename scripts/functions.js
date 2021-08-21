@@ -84,15 +84,22 @@ function addScore(hand) {
 
 function showRules() {
   alert(
-      `Dos para el Lobo old school. 
-      Clickeá en el mazo para levantar otra!`
+      `Dos para el Lobo recauchutado. 
+      Para ganar, debés quedarte sin cartas. 
+      Sólo podés colocar una carta del mismo palo o número, o bien un 4.
+      Si ninguna de tus cartas coincide, debés levantar una (click en el pozo!). También podés levantar por gusto.
+      Si te equivocás, se te penalizará con dos cartas`
     );
 }
 
 function checkCard(card, ref) {
-  console.log(ref.code, card.code)
   const [numberref, suiteref] = ref.code.split("")
   const [number, suite] = card.code.split("")
+  console.log("number", number, numberref, suite, suiteref)
+  number === "0" ? (number = 10) : null;
+  numberref === "0" ? (numberref = 10) : null;
+  if (number === "4") {
+    return true }
   if (numberref === number || suiteref === suite) {
     return true
   } else {
