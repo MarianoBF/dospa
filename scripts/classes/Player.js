@@ -29,6 +29,9 @@ class Player {
   getFromDeck(cards = 1) {
     auxGetCards(cards).then(newCards => {
       this.hand = [...this.hand, ...newCards];
+      if (this.hand.length > 12) {
+        match.endMatchLose("Humano");
+      }
       this.showHumanCards();     
     });
   }
@@ -60,8 +63,8 @@ class Player {
       deck.sendToDiscard(card)
       gameStatus.innerText = "¡Sigue!";
       if (this.hand.length === 0) {
-        match.endMatch("Human");
-      }}
+        match.endMatchWin("Humano");
+      }} 
       else {
         gameStatus.innerText = "¡Jugada no válida!";
       }
@@ -81,11 +84,6 @@ class Player {
 
   cleanUp() {
     this.hand = [];
-    this.roundScore = 0;
-  }
-
-  getRoundPoints() {
-    return this.roundScore;
   }
 
   getName() {
