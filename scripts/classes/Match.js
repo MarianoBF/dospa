@@ -20,8 +20,7 @@ class Match {
       AI.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa";
       auxGetCards(1).then(card => {
-        deck.discard.push(card);
-        console.log(deck.discard)
+        deck.sendToDiscard(card[0]);
       })
     },1500)
 }

@@ -20,6 +20,7 @@ async function auxGetCards(number) {
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
     );
     cards = await data.json();
+    errors = false;
   } catch {
     if (match.errors >= 5) {
       alert(
@@ -89,9 +90,13 @@ function showRules() {
 }
 
 function checkCard(card, ref) {
-  console.log(ref, card)
-  const [numberref, suiteref] = ref.split()
-  const [number, suite] = card.split()
-  console.log(numberref, suiteref)
+  console.log(ref.code, card.code)
+  const [numberref, suiteref] = ref.code.split("")
+  const [number, suite] = card.code.split("")
+  if (numberref === number || suiteref === suite) {
+    return true
+  } else {
+    return false
+  }
 
 }
