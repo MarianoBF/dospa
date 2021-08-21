@@ -19,7 +19,24 @@ body {
     display: flex;
     align-items: center;
     height: 15vh;
-    overflow-x: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.potContainer {
+    max-width: 25vw;
+    height: 25vh;
+}
+
+.potContainer p {
+    color: #FFF;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.potContainer img {
+    max-width: 30vw;
+    max-height: 25vh;
 }
 
 .buttons {
@@ -110,6 +127,15 @@ body {
     background: #F6EDD9;
 }
 
+.menu {
+    height: 25vh;
+    margin: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media (min-width: 768px) {
     .messageDisplay {
         height: 6rem;
@@ -127,15 +153,12 @@ body {
     }
 
     .cardContainer img {
-        max-width: 15vw;
-        max-height: 20vh;
+        max-width: 10vw;
         margin: 0;
     }
     
     .cardContainer {
         height: 20vh;
-        flex-wrap: wrap;
-        overflow-x: unset;
         justify-content: space-around;
     }
 }
@@ -160,17 +183,9 @@ body {
     .button {
         height: 15vh;
     }
-
-    .cardContainer img {
-        max-width: 15vw;
-        max-height: 25vh;
-        margin: 0;
-    }
-    
+   
     .cardContainer {
         height: 25vh;
-        flex-wrap: wrap;
-        overflow-x: unset;
-        justify-content: space-around;
+        justify-content: space-around;       
     }
 }

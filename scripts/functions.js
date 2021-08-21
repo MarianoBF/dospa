@@ -14,11 +14,13 @@ async function getFullDeck() {
 
 async function auxGetCards(number) {
   let id = deck.getId();
+  let errors = false;
   try {
     let data = await fetch(
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
     );
     cards = await data.json();
+    errors = false;
   } catch {
     if (match.errors >= 5) {
       alert(
@@ -30,15 +32,38 @@ async function auxGetCards(number) {
       "No se pudieron traer las cartas, hubo un problema en el servidor. Reintentando..."
     );
     match.errors++;
-    auxGetCards();
+    errors = match.errors <5 ? true : false;
+  } finally {
+    if (errors) {auxGetCards()};
   }
   return cards.cards;
 }
 
-function drawCards(cartas, container) {
+async function auxSendToPile(card) {
+  console.log("card to pot", card)
+  let id = deck.getId();
+  try {
+    let data = await fetch(
+      `https://deckofcardsapi.com/api/deck/${id}/pile/pot/add/?cards=${card}`
+    );
+    let pot = await data.json();
+    console.log(pot)
+  } catch (error) {
+    console.log(error) 
+  }
+  return pot.cards;
+}
+
+function drawCards(cartas, container, type) {
   cartas.forEach(carta => {
     let img = document.createElement("IMG");
     img.src = carta.image;
+    if (type === "human") {
+      img.id = carta.code;
+      img.addEventListener("click", () => {
+      Human.sendToDiscard(carta)
+ });
+    }
     container.append(img);
   });
 }
@@ -59,49 +84,26 @@ function addScore(hand) {
 
 function showRules() {
   alert(
-    "Se suman los puntajes de cada carta numérica, las figuras (J,Q,K) suman 10 puntos y el As 15 puntos.\n" +
-      "Podés cambiar algunas cartas en la ronda intermedia. \n" +
-      "El mejor de 3 manos, gana. \n" +
-      "Al terminar cada ronda podés grabar."
-  );
+      `Dos para el Lobo recauchutado. 
+      Para ganar, debés quedarte sin cartas. 
+      Sólo podés colocar una carta del mismo palo o número, o bien un 4.
+      Si ninguna de tus cartas coincide, debés levantar una (click en el pozo!). También podés levantar por gusto.
+      Si te equivocás, se te penalizará con dos cartas`
+    );
 }
 
-function saverLoader() {
-  if (save_load.innerText === "Guardar") {
-    try {
-      const gameState = {
-        tiedRounds: Human.roundsTied,
-        humanRounds: Human.roundsWon,
-        PCRounds: AI.roundsWon,
-        tiedMatches: Human.matchesTied,
-        matchWinsHuman: Human.matchesWon,
-        matchWinsPC: AI.matchesWon,
-        playedRounds: partido.roundsPlayed + 1,
-      };
-      localStorage.setItem("cartas", JSON.stringify(gameState));
-      save_load.innerText = "Cargar";
-    } catch {
-      alert("No se pudo guardar la partida");
-    }
+function checkCard(card, ref) {
+  const [numberref, suiteref] = ref.code.split("")
+  const [number, suite] = card.code.split("")
+  console.log("number", number, numberref, suite, suiteref)
+  number === "0" ? (number = 10) : null;
+  numberref === "0" ? (numberref = 10) : null;
+  if (number === "4") {
+    return true }
+  if (numberref === number || suiteref === suite) {
+    return true
   } else {
-    try {
-      const gameState = JSON.parse(localStorage.getItem("cartas"));
-      save_load.innerText = "Guardar";
-      Human.roundsTied = gameState.tiedRounds;
-      tiedRoundCounter.value = gameState.tiedRounds;
-      Human.roundsWon = gameState.humanRounds;
-      humanRoundCounter.value = gameState.humanRounds;
-      AI.roundsWon = gameState.PCRounds;
-      pcRoundCounter.value = gameState.PCRounds;
-      Human.matchesTied = gameState.tiedMatches;
-      tiedMatchCounter.value = gameState.tiedMatches;
-      Human.matchesWon = gameState.matchWinsHuman;
-      humanMatchCounter.value = gameState.matchWinsHuman;
-      AI.matchesWon = gameState.matchWinsPC;
-      pcMatchCounter.value = gameState.matchWinsPC;
-      match.roundsPlayed = gameState.playedRounds;
-    } catch {
-      alert("No se pudo cargar la partida");
-    }
+    return false
   }
+
 }
