@@ -12,6 +12,20 @@ async function getFullDeck() {
   return auxDeck;
 }
 
+async function getDecks() {
+  let deck; 
+  //TODO: get several (n) decks
+  try {
+    let data = await fetch("https://deckofcardsapi.com/api/deck/new/draw/?count=52")
+    deck = await data.json()
+  } catch {
+    gameStatus.innerText = "No se pudo traer el mazo. Reiniciando partida y reintentando"
+  }
+  console.log("returning deck", deck)
+  return deck;
+  //TODO retry
+}
+
 async function auxGetCards(number) {
   let id = deck.getId();
   let retry = false;
@@ -57,20 +71,6 @@ function drawCards(cartas, container, type) {
   });
 }
 
-function addScore(hand) {
-  let sum = 0;
-  hand.forEach(element => {
-    element.value === "JACK" ||
-    element.value === "QUEEN" ||
-    element.value === "KING"
-      ? (element.value = 10)
-      : null;
-    element.value === "ACE" ? (element.value = 15) : null;
-    sum += +element.value;
-  });
-  return sum;
-}
-
 function showRules() {
   alert(
       `Dos para el Lobo recauchutado. 
@@ -86,8 +86,6 @@ function showRules() {
 function checkCard(card, ref) {
   let [numberref, suiteref] = ref.code.split("")
   let [number, suite] = card.code.split("")
-  number === "0" ? (number = 10) : null;
-  numberref === "0" ? (numberref = 10) : null;
   if (number === "4") {
     return true }
   if (numberref === number || suiteref === suite) {

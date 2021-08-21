@@ -2,22 +2,38 @@ class Match {
   id;
   roundsPlayed;
   errors;
+  deck;
+  cards;
+  pot;
+  discard;
 
   constructor() {
     this.id = new Date();
     this.roundsPlayed = 0;
     this.errors = 0;
+    this.cards = [];
+    this.pot = [];
+    this.discard = [];
+    this.deck = {};
   }
 
   startRound() {
-    pot.style.display = "initial";
-    discard.style.display = "initial";
-    pcContainer.innerHTML = "";
-    humanContainer.innerHTML = "";
-    start.disabled = true;
-    Human.getCards();
-    AI.getCards();
+    getDecks().then(res => this.deck = res);
     setTimeout(() => {
+      console.log(this.deck)
+      this.cards = this.deck.cards
+      console.log(this.cards)
+      pot.style.display = "initial";
+      discard.style.display = "initial";
+      pcContainer.innerHTML = "";
+      humanContainer.innerHTML = "";
+      start.disabled = true;
+      Human.populateHand(this.cards.splice(0,5))
+      AI.populateHand(this.cards.splice(0,5))
+      console.log("remaning cards", this.cards)
+      // Human.getCards();
+      // AI.getCards();
+  
       Human.showHumanCards();
       // AI.showBackOfCards();
       AI.showPCCards();
@@ -25,19 +41,21 @@ class Match {
       auxGetCards(1).then(card => {
         deck.sendToDiscard(card[0]);
       })
-    },1500)
+    },2500)
 }
 
   getFromPot() {
     Human.getFromDeck(1);
     Human.showHumanCards();
-    AI.showBackOfCards();
+    // AI.showBackOfCards();
     AI.showPCCards();
+    AI.AIPlay();
   }
 
   play(carta) {
     Human.sendToDiscard(carta)
     AI.AIPlay();
+    AI.showPCCards();
   }
 
   endMatchWin(player) {
