@@ -23,27 +23,11 @@ const pot = document.getElementById("potContainer");
 const discard = document.getElementById("discardContainer");
 const helpModeSelector = document.getElementById("helpModeSelector");
 
-const cardsBack = [
-  {
-    image: "./images/back.png",
-  },
-  {
-    image: "./images/back.png",
-  },
-  {
-    image: "./images/back.png",
-  },
-  {
-    image: "./images/back.png",
-  },
-  {
-    image: "./images/back.png",
-  },
-];
+const cardsBack = "./images/back.png";
 
 //Event listeners
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
-pot.addEventListener("click", () => Human.getFromDeck(1));
-helpModeSelector.addEventListener("change", () => { helpMode = !helpMode; console.log(helpMode) });
+pot.addEventListener("click", () => match.getFromPot());
+helpModeSelector.addEventListener("change", () => { helpMode = !helpMode });
 

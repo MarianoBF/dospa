@@ -19,13 +19,26 @@ class Match {
     AI.getCards();
     setTimeout(() => {
       Human.showHumanCards();
-      AI.showBackOfCards();
-      gameStatus.innerText = "Cartas en la mesa";
+      // AI.showBackOfCards();
+      AI.showPCCards();
+      gameStatus.innerText = "Cartas en la mesa, ¡juegue!";
       auxGetCards(1).then(card => {
         deck.sendToDiscard(card[0]);
       })
     },1500)
 }
+
+  getFromPot() {
+    Human.getFromDeck(1);
+    Human.showHumanCards();
+    AI.showBackOfCards();
+    AI.showPCCards();
+  }
+
+  play(carta) {
+    Human.sendToDiscard(carta)
+    AI.AIPlay();
+  }
 
   endMatchWin(player) {
     alert('Ganó ' + player);

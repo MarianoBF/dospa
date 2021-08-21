@@ -23,7 +23,7 @@ async function auxGetCards(number) {
     cards = await data.json();
     errors = false;
   } catch {
-    retry = prompt("No se pudieron traer las cartas, hubo un problema en el servidor ¿Reintentamos?")
+    retry = confirm("No se pudieron traer las cartas, hubo un problema en el servidor ¿Reintentamos?")
   } } while (retry === true)
   return cards.cards;
 }
@@ -50,7 +50,7 @@ function drawCards(cartas, container, type) {
     if (type === "human") {
       img.id = carta.code;
       img.addEventListener("click", () => {
-      Human.sendToDiscard(carta)
+      match.play(carta)
  });
     }
     container.append(img);
@@ -84,8 +84,8 @@ function showRules() {
 }
 
 function checkCard(card, ref) {
-  const [numberref, suiteref] = ref.code.split("")
-  const [number, suite] = card.code.split("")
+  let [numberref, suiteref] = ref.code.split("")
+  let [number, suite] = card.code.split("")
   number === "0" ? (number = 10) : null;
   numberref === "0" ? (numberref = 10) : null;
   if (number === "4") {

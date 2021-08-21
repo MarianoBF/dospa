@@ -32,8 +32,6 @@ class Player {
       if (this.hand.length > 12) {
         match.endMatchLose("Humano");
       }
-      this.showHumanCards();
-      this.showBackOfCards();    
     });
   }
 
@@ -65,7 +63,6 @@ class Player {
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
       }
-      AI.AIPlay();
       if (helpMode) { 
       gameStatus.innerText = "Turno PC";
         } 
@@ -97,10 +94,13 @@ class Player {
   }
 
   showBackOfCards() {
-    drawCards(cardsBack, pcContainer, "pc");
+    pcContainer.innerHTML = "";
+    let reverseCards = Array(this.hand.length).fill({image: cardsBack})
+    drawCards(reverseCards, pcContainer, "pc");
   }
 
   showPCCards() {
+    pcContainer.innerHTML = "";
     drawCards(this.hand, pcContainer, "pc");
   }
 

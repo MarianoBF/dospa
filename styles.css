@@ -70,6 +70,14 @@ body {
     color: slategray;
 }
 
+.rulesHelpContainer {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 7rem;
+    justify-content: center;
+    align-items: center;
+}
+
 .messageDisplay {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 0.8em;
@@ -126,6 +134,7 @@ body {
     width: 5rem;
     opacity: 0.75;
     background: #F6EDD9;
+    margin: 15px;
 }
 
 .menu {
