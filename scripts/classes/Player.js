@@ -32,7 +32,8 @@ class Player {
       if (this.hand.length > 12) {
         match.endMatchLose("Humano");
       }
-      this.showHumanCards();     
+      this.showHumanCards();
+      this.showBackOfCards();    
     });
   }
 
@@ -59,19 +60,40 @@ class Player {
       let index = this.hand.findIndex(handCard=>handCard.code === card);
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
-      console.log(this.hand)
       deck.sendToDiscard(card)
       gameStatus.innerText = "¡Sigue!";
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
-      }} 
+      }
+      AI.AIPlay();
+      if (helpMode) { 
+      gameStatus.innerText = "Turno PC";
+        } 
       else {
         gameStatus.innerText = "¡Jugada no válida!";
       }
-  }
+  }}
 
-  PCDiscards(card){
-
+  AIPlay(){
+    console.log("my turn");
+    const ref = deck.getTopOfDiscardPile();
+    const card = this.hand.find(handCard => checkCard(handCard, ref));
+    if (card) {
+      auxSendToPile(card.code);
+      let index = this.hand.findIndex(handCard=>handCard.code === card);
+      this.hand.splice(index, 1);
+      deck.sendToDiscard(card);
+      gameStatus.innerText = "¡Sigue!";
+      pcContainer.removeChild(pcContainer.lastElementChild);
+      if (this.hand.length === 0) {
+        match.endMatchWin("PC");
+      }
+    } else {
+      this.getFromDeck(1);
+    }
+    if (helpMode) { 
+      gameStatus.innerText = "Turno Humano";
+    }
   }
 
   showBackOfCards() {

@@ -2,6 +2,7 @@ let Human = new Player("Humano", true);
 let AI = new Player("PC", false);
 let match = new Match();
 let deck = new Deck
+let helpMode = false;
 deck.startMatch()
 
 //Referencias
@@ -19,7 +20,8 @@ const humanMatchCounter = document.getElementById("humanMatchCounter");
 const pcMatchCounter = document.getElementById("pcMatchCounter");
 const tiedMatchCounter = document.getElementById("tiedMatchCounter");
 const pot = document.getElementById("potContainer");
-const discard = document.getElementById("discardContainer")
+const discard = document.getElementById("discardContainer");
+const helpModeSelector = document.getElementById("helpModeSelector");
 
 const cardsBack = [
   {
@@ -43,4 +45,5 @@ const cardsBack = [
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
 pot.addEventListener("click", () => Human.getFromDeck(1));
+helpModeSelector.addEventListener("change", () => { helpMode = !helpMode; console.log(helpMode) });
 
