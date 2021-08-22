@@ -1,7 +1,7 @@
 class HumanPlayer extends Player {
 
-  constructor() {
-    super();
+  constructor(name) {
+    super(name);
   }
 
   showHumanCards() {
@@ -9,4 +9,9 @@ class HumanPlayer extends Player {
     drawCards(this.hand, humanContainer, "human");
   }
 
+  getFromPot(card) {
+    console.log("card", card)
+    Human.updateHand(card);
+    Human.showHumanCards();
+  }
 }

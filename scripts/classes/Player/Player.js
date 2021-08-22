@@ -39,7 +39,12 @@ class Player {
         gameStatus.innerText = "¡Sigue!";
       }
     } else {
-      gameStatus.innerText = "¡Jugada no válida!";
+      gameError.style.display = "initial";
+      gameError.innerText = "¡Jugada no válida! Se te agrega una carta como penalización.";
+      match.playGetFromPot();
+      setTimeout(() => {
+        gameError.style.display = "none";
+      }, 2000);
     }
   }
 
@@ -52,5 +57,4 @@ class Player {
   cleanUp() {
     this.hand = [];
   }
-
 }

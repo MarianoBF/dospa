@@ -4,7 +4,6 @@ class Match {
   errors;
   deck;
   cards;
-  pot;
   discard;
 
   constructor() {
@@ -12,7 +11,6 @@ class Match {
     this.gameWon = false;
     this.errors = 0;
     this.cards = [];
-    this.pot = [];
     this.discard = [];
     this.deck = {};
   }
@@ -26,12 +24,13 @@ class Match {
       discard.style.display = "initial";
       pcContainer.innerHTML = "";
       humanContainer.innerHTML = "";
-      Human.populateHand(this.cards.splice(0, 5));
-      PC.populateHand(this.cards.splice(0, 5));
+      Human.populateHand(this.cards.splice(0, 7));
+      PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
       this.sendToDiscard(this.cards.pop());
+      console.log("cards", this.cards);
     }, 2500);
     gameStatus.innerText = "Trayendo el mazo...";
   }
@@ -39,41 +38,38 @@ class Match {
   sendToDiscard(card) {
     this.discard.push(card);
     discardImage.src = card.image;
-    console.log("discard", this.discard)
+    console.log("discard", this.discard);
   }
 
   getTopOfDiscardPile() {
     return this.discard[this.discard.length - 1];
   }
 
-  PCGetsFromPot() {
-    PC.updateHand([this.cards.pop()]);
-    PC.showBackOfCards();
-  }
-  
   getFromPot() {
-    Human.updateHand([this.cards.pop()]);
-    Human.showHumanCards();
+    console.log("cards", this.cards);
+    return [this.cards.pop()];
+  }
+
+  playGetFromPot() {
+    console.log("cards", this.cards);
+    Human.getFromPot([this.cards.pop()]);
     if (!this.gameWon) {
-      let wait = 3000*Math.random()
+      let wait = 3000 * Math.random();
       setTimeout(() => {
         PC.PCPlay();
-        PC.showPCCards();
-        }, wait)
+        PC.showBackOfCards();
+      }, wait);
     }
-    console.log("pot", this.pot)
-    console.log("cards", this.cards)
-
   }
 
   play(carta) {
     Human.sendToDiscard(carta);
     if (!this.gameWon) {
-    let wait = 3000*Math.random()
+      let wait = 3000 * Math.random();
       setTimeout(() => {
-      PC.PCPlay();
-      PC.showPCCards();
-      }, wait)
+        PC.PCPlay();
+        PC.showPCCards();
+      }, wait);
     }
   }
 

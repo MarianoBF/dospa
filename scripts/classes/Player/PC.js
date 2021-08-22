@@ -1,4 +1,7 @@
 class PCPlayer extends Player {
+  constructor(name) {
+    super(name);
+  }
 
   PCPlay() {
     console.log("my turn");
@@ -15,13 +18,19 @@ class PCPlayer extends Player {
         match.endMatchWin("PC");
       }
     } else {
-      match.PCGetsFromPot();
+      this.PCGetsFromPot();
     }
     if (helpMode) {
       gameStatus.innerText = "Turno Humano";
     } else {
       gameStatus.innerText = "¡Sigue!";
     }
+  }
+
+  PCGetsFromPot() {
+    let card = match.getFromPot();
+    PC.updateHand(card);
+    PC.showBackOfCards();
   }
 
   showBackOfCards() {
@@ -34,5 +43,4 @@ class PCPlayer extends Player {
     pcContainer.innerHTML = "";
     drawCards(this.hand, pcContainer, "pc");
   }
-
 }

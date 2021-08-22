@@ -93,6 +93,11 @@ body {
   padding: 5px;
 }
 
+.warningText {
+  font-size: 1.2em;
+  color: red;
+}
+
 .messageContainer {
   display: flex;
   flex-direction: column;
