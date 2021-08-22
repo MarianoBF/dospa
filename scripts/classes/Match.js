@@ -27,9 +27,9 @@ class Match {
       pcContainer.innerHTML = "";
       humanContainer.innerHTML = "";
       Human.populateHand(this.cards.splice(0, 5));
-      AI.populateHand(this.cards.splice(0, 5));
+      PC.populateHand(this.cards.splice(0, 5));
       Human.showHumanCards();
-      AI.showBackOfCards();
+      PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, jugá!";
       this.sendToDiscard(this.cards.pop());
     }, 2500);
@@ -45,8 +45,8 @@ class Match {
   }
 
   PCGetsFromPot() {
-    AI.updateHand([this.cards.pop()]);
-    AI.showBackOfCards();
+    PC.updateHand([this.cards.pop()]);
+    PC.showBackOfCards();
   }
   
   getFromPot() {
@@ -55,8 +55,8 @@ class Match {
     if (!this.gameWon) {
       let wait = 3000*Math.random()
       setTimeout(() => {
-        AI.AIPlay();
-        AI.showPCCards();
+        PC.PCplay();
+        PC.showPCCards();
         }, wait)
     }
   }
@@ -66,8 +66,8 @@ class Match {
     if (!this.gameWon) {
     let wait = 3000*Math.random()
       setTimeout(() => {
-      AI.AIPlay();
-      AI.showPCCards();
+      PC.PCPlay();
+      PC.showPCCards();
       }, wait)
     }
   }
@@ -89,7 +89,8 @@ class Match {
     pot.style.display = "none";
     discard.style.display = "none";
     Human.cleanUp();
-    AI.cleanUp();
+    PC.cleanUp();
+    //TODO: set scores
     start.disabled = false;
   }
 }

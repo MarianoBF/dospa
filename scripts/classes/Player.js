@@ -1,20 +1,12 @@
 class Player {
   name;
   hand;
-  score;
-  roundScore;
-  isHuman;
-  roundsWon;
-  roundsTied;
   matchesWon;
   matchesTied;
 
-  constructor(name, isHuman) {
+  constructor(name) {
     this.name = name;
-    this.score = 0;
-    this.isHuman = isHuman;
-    this.roundsWon = 0;
-    this.roundsTied = 0;
+    this.hand = [];
     this.matchesWon = 0;
     this.matchesTied = 0;
   }
@@ -28,11 +20,6 @@ class Player {
     if (this.hand.length > 12) {
       match.endMatchLose(this.name);
     }
-  }
-
-  showHumanCards() {
-    humanContainer.innerHTML = "";
-    drawCards(this.hand, humanContainer, "human");
   }
 
   sendToDiscard(card) {
@@ -56,46 +43,14 @@ class Player {
     }
   }
 
-  AIPlay() {
-    console.log("my turn");
-    const ref = match.getTopOfDiscardPile();
-    const card = this.hand.find((handCard) => checkCard(handCard, ref));
-    if (card) {
-      let index = this.hand.findIndex(
-        (handCard) => handCard.code === card.code
-      );
-      this.hand.splice(index, 1);
-      match.sendToDiscard(card);
-      pcContainer.removeChild(pcContainer.lastElementChild);
-      if (this.hand.length === 0) {
-        match.endMatchWin("PC");
-      }
-    } else {
-      match.PCGetsFromPot();
-    }
-    if (helpMode) {
-      gameStatus.innerText = "Turno Humano";
-    } else {
-      gameStatus.innerText = "¡Sigue!";
-    }
-  }
-
   showBackOfCards() {
     pcContainer.innerHTML = "";
     let reverseCards = Array(this.hand.length).fill({ image: cardsBack });
     drawCards(reverseCards, pcContainer, "pc");
   }
 
-  showPCCards() {
-    pcContainer.innerHTML = "";
-    drawCards(this.hand, pcContainer, "pc");
-  }
-
   cleanUp() {
     this.hand = [];
   }
 
-  getName() {
-    return this.name;
-  }
 }

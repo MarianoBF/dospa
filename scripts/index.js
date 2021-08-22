@@ -1,5 +1,5 @@
-let Human = new Player("Humano", true);
-let AI = new Player("PC", false);
+let Human = new HumanPlayer("Humano");
+let PC = new PCPlayer("PC");
 let match = new Match();
 let helpMode = true;
 
