@@ -1,4 +1,4 @@
-class PlayerHuman extends Player {
+class HumanPlayer extends Player {
 
   constructor() {
     super();

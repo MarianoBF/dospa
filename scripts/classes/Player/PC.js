@@ -1,4 +1,4 @@
-class PlayerPC extends Player {
+class PCPlayer extends Player {
 
   PCPlay() {
     console.log("my turn");

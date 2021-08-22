@@ -30,14 +30,16 @@ class Match {
       PC.populateHand(this.cards.splice(0, 5));
       Human.showHumanCards();
       PC.showBackOfCards();
-      gameStatus.innerText = "Cartas en la mesa, jugá!";
+      gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
       this.sendToDiscard(this.cards.pop());
     }, 2500);
+    gameStatus.innerText = "Trayendo el mazo...";
   }
 
   sendToDiscard(card) {
     this.discard.push(card);
     discardImage.src = card.image;
+    console.log("discard", this.discard)
   }
 
   getTopOfDiscardPile() {
@@ -55,10 +57,13 @@ class Match {
     if (!this.gameWon) {
       let wait = 3000*Math.random()
       setTimeout(() => {
-        PC.PCplay();
+        PC.PCPlay();
         PC.showPCCards();
         }, wait)
     }
+    console.log("pot", this.pot)
+    console.log("cards", this.cards)
+
   }
 
   play(carta) {
