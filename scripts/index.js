@@ -1,15 +1,13 @@
 let Human = new Player("Humano", true);
 let AI = new Player("PC", false);
 let match = new Match();
-let helpMode = false;
+let helpMode = true;
 
 //Referencias
-const discardContainer = document.getElementById("discardContainer")
-const discardImage = document.getElementById("discardImage")
+const discardContainer = document.getElementById("discardContainer");
+const discardImage = document.getElementById("discardImage");
 const pcContainer = document.getElementById("pcContainer");
-const humanContainer = document.getElementById(
-  "humanContainer"
-);
+const humanContainer = document.getElementById("humanContainer");
 const start = document.getElementById("start");
 const close = document.getElementById("close");
 const rules = document.getElementById("rules");
@@ -27,5 +25,6 @@ const cardsBack = "./images/back.png";
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
 pot.addEventListener("click", () => match.getFromPot());
-helpModeSelector.addEventListener("change", () => { helpMode = !helpMode });
-
+helpModeSelector.addEventListener("change", () => {
+  helpMode = !helpMode;
+});

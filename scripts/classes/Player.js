@@ -20,14 +20,14 @@ class Player {
   }
 
   populateHand(cards) {
-    this.hand = [...cards]
+    this.hand = [...cards];
   }
 
   updateHand(cards) {
-      this.hand = [...this.hand, ...cards];
-      if (this.hand.length > 12) {
-        match.endMatchLose(this.name);
-      };
+    this.hand = [...this.hand, ...cards];
+    if (this.hand.length > 12) {
+      match.endMatchLose(this.name);
+    }
   }
 
   showHumanCards() {
@@ -36,49 +36,53 @@ class Player {
   }
 
   sendToDiscard(card) {
-    const ref = match.getTopOfDiscardPile()
-    const result = checkCard(card, ref)
-      if (result) {
-      let index = this.hand.findIndex(handCard=>handCard.code === card);
+    const ref = match.getTopOfDiscardPile();
+    const result = checkCard(card, ref);
+    if (result) {
+      let index = this.hand.findIndex((handCard) => handCard.code === card);
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
-      match.sendToDiscard(card)
-      gameStatus.innerText = "¡Sigue!";
+      match.sendToDiscard(card);
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
       }
-      if (helpMode) { 
-      gameStatus.innerText = "Turno PC";
-        } 
-      else {
-        gameStatus.innerText = "¡Jugada no válida!";
+      if (helpMode) {
+        gameStatus.innerText = "Turno PC";
+      } else {
+        gameStatus.innerText = "¡Sigue!";
       }
-  }}
+    } else {
+      gameStatus.innerText = "¡Jugada no válida!";
+    }
+  }
 
-  AIPlay(){
+  AIPlay() {
     console.log("my turn");
     const ref = match.getTopOfDiscardPile();
-    const card = this.hand.find(handCard => checkCard(handCard, ref));
+    const card = this.hand.find((handCard) => checkCard(handCard, ref));
     if (card) {
-      let index = this.hand.findIndex(handCard=>handCard.code === card.code);
+      let index = this.hand.findIndex(
+        (handCard) => handCard.code === card.code
+      );
       this.hand.splice(index, 1);
       match.sendToDiscard(card);
-      gameStatus.innerText = "¡Sigue!";
       pcContainer.removeChild(pcContainer.lastElementChild);
       if (this.hand.length === 0) {
         match.endMatchWin("PC");
       }
     } else {
-      match.getFromPot();
+      match.PCGetsFromPot();
     }
-    if (helpMode) { 
+    if (helpMode) {
       gameStatus.innerText = "Turno Humano";
+    } else {
+      gameStatus.innerText = "¡Sigue!";
     }
   }
 
   showBackOfCards() {
     pcContainer.innerHTML = "";
-    let reverseCards = Array(this.hand.length).fill({image: cardsBack})
+    let reverseCards = Array(this.hand.length).fill({ image: cardsBack });
     drawCards(reverseCards, pcContainer, "pc");
   }
 

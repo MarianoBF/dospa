@@ -13,13 +13,17 @@ async function getFullDeck() {
 }
 
 async function getDecks() {
-  let deck; 
+  console.log("getting deck")
+  let deck;
   //TODO: get several (n) decks
   try {
-    let data = await fetch("https://deckofcardsapi.com/api/deck/new/draw/?count=52")
-    deck = await data.json()
+    let data = await fetch(
+      "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
+    );
+    deck = await data.json();
   } catch {
-    gameStatus.innerText = "No se pudo traer el mazo. Reiniciando partida y reintentando"
+    gameStatus.innerText =
+      "No se pudo traer el mazo. Reiniciando partida y reintentando";
   }
   return deck;
   //TODO retry
@@ -27,14 +31,14 @@ async function getDecks() {
 
 function drawCards(cartas, container, type) {
   if (cartas.length) {
-    cartas.forEach(carta => {
+    cartas.forEach((carta) => {
       let img = document.createElement("IMG");
       img.src = carta.image;
       if (type === "human") {
         img.id = carta.code;
         img.addEventListener("click", () => {
-        match.play(carta)
-  });
+          match.play(carta);
+        });
       }
       container.append(img);
     });
@@ -43,7 +47,7 @@ function drawCards(cartas, container, type) {
 
 function showRules() {
   alert(
-     `Dos para el Lobo recauchutado. 
+    `Dos para el Lobo recauchutado. 
       Para ganar, debés quedarte sin cartas. 
       Sólo podés colocar una carta del mismo palo o número, o bien un 4.
       Si ninguna de tus cartas coincide, debés levantar una (click en el pozo!). 
@@ -51,18 +55,18 @@ function showRules() {
       La máquina va a tirar su carta si tiene o levantar una si no tiene.
       Si te equivocás, se te penalizará con cartas extra
       Si pasás de las 12 cartas en mano, perdés`
-    );
+  );
 }
 
 function checkCard(card, ref) {
-  let [numberref, suiteref] = ref.code.split("")
-  let [number, suite] = card.code.split("")
+  let [numberref, suiteref] = ref.code.split("");
+  let [number, suite] = card.code.split("");
   if (number === "4") {
-    return true }
-  if (numberref === number || suiteref === suite) {
-    return true
-  } else {
-    return false
+    return true;
   }
-
+  if (numberref === number || suiteref === suite) {
+    return true;
+  } else {
+    return false;
+  }
 }

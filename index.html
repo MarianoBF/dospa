@@ -17,42 +17,42 @@
 
   <div class="menu">
 
-      <button class="playButton" id="start">Iniciar nuevo partido</button>
-      <!-- <button class="playButton" id="deal" disabled>Levantar carta</button> -->
-      <!-- <button class="playButton" id="change" disabled>Cambiar cartas</button>
+    <button class="playButton" id="start">Iniciar nuevo partido</button>
+    <!-- <button class="playButton" id="deal" disabled>Levantar carta</button> -->
+    <!-- <button class="playButton" id="change" disabled>Cambiar cartas</button>
       <button class="playButton" id="score" disabled>Mostrar cartas y puntaje</button>
       <button class="playButton" id="close" disabled>Cerrar mano</button> -->
-      <div class="messageContainer">
-        <h2>Estado del Juego</h2>
-        <div class="messageDisplay" id="statusContainer">
-          <p id="status"></p>
-        </div>
+    <div class="messageContainer">
+      <h2>Estado del Juego</h2>
+      <div class="messageDisplay" id="statusContainer">
+        <p id="status"></p>
       </div>
-      <div id="potContainer" class="potContainer">
-        <img src="images/back.png">
-        <p>Pozo</p>
-      </div>
-      <div id="discardContainer" class="potContainer">
-        <img id="discardImage" src="images/back.png">
-        <p>Descarte</p>
-      </div>
-      <div class="messageContainer">
-        <h2>Partidos</h2>
-        <label>Humano
-          <input class="counter" id="humanMatchCounter" type="text" value="0" readonly />
-        </label>
-        <label>PC
-          <input class="counter" id="pcMatchCounter" type="text" value="0" readonly />
-        </label>
-        <label>Empates
-          <input class="counter" id="tiedMatchCounter" type="text" value="0" readonly />
-        </label>
-      </div>
-      <div class="rulesHelpContainer">
-        <button id="rules" class="auxButton">Mostrar Reglas</button>
-        <label>Modo Ayuda</label>
-        <input type="checkbox" id="helpModeSelector" checked/>
-      </div>
+    </div>
+    <div id="potContainer" class="potContainer">
+      <img src="images/back.png">
+      <p>Pozo</p>
+    </div>
+    <div id="discardContainer" class="potContainer">
+      <img id="discardImage" src="images/back.png">
+      <p>Descarte</p>
+    </div>
+    <div class="messageContainer">
+      <h2>Partidos</h2>
+      <label>Humano
+        <input class="counter" id="humanMatchCounter" type="text" value="0" readonly />
+      </label>
+      <label>PC
+        <input class="counter" id="pcMatchCounter" type="text" value="0" readonly />
+      </label>
+      <label>Empates
+        <input class="counter" id="tiedMatchCounter" type="text" value="0" readonly />
+      </label>
+    </div>
+    <div class="rulesHelpContainer">
+      <button id="rules" class="auxButton">Mostrar Reglas</button>
+      <label>Modo Ayuda</label>
+      <input type="checkbox" id="helpModeSelector" checked />
+    </div>
   </div>
   <div id="pcContainer" class="cardContainer"></div>
   <script src="./scripts/functions.js"></script>

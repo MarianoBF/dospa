@@ -1,6 +1,6 @@
 class Match {
   id;
-  roundsPlayed;
+  gameWon;
   errors;
   deck;
   cards;
@@ -9,7 +9,7 @@ class Match {
 
   constructor() {
     this.id = new Date();
-    this.roundsPlayed = 0;
+    this.gameWon = false;
     this.errors = 0;
     this.cards = [];
     this.pot = [];
@@ -19,54 +19,66 @@ class Match {
 
   startRound() {
     start.disabled = true;
-    getDecks().then(res => this.deck = res);
+    getDecks().then((res) => (this.deck = res));
     setTimeout(() => {
-      this.cards = this.deck.cards
+      this.cards = this.deck.cards;
       pot.style.display = "initial";
       discard.style.display = "initial";
       pcContainer.innerHTML = "";
       humanContainer.innerHTML = "";
-      Human.populateHand(this.cards.splice(0,5))
-      AI.populateHand(this.cards.splice(0,5))
+      Human.populateHand(this.cards.splice(0, 5));
+      AI.populateHand(this.cards.splice(0, 5));
       Human.showHumanCards();
-      // AI.showBackOfCards();
-      AI.showPCCards();
-      gameStatus.innerText = "Cartas en la mesa, ¡juegue!";
+      AI.showBackOfCards();
+      gameStatus.innerText = "Cartas en la mesa, jugá!";
       this.sendToDiscard(this.cards.pop());
-      
-    },2500)
+    }, 2500);
   }
 
   sendToDiscard(card) {
-    this.discard.push(card)
+    this.discard.push(card);
     discardImage.src = card.image;
   }
 
   getTopOfDiscardPile() {
-    return this.discard[this.discard.length - 1];        
+    return this.discard[this.discard.length - 1];
   }
 
+  PCGetsFromPot() {
+    AI.updateHand([this.cards.pop()]);
+    AI.showBackOfCards();
+  }
+  
   getFromPot() {
-    Human.updateHand([this.cards.pop()])
+    Human.updateHand([this.cards.pop()]);
     Human.showHumanCards();
-    // AI.showBackOfCards();
-    AI.AIPlay();
-    AI.showPCCards();
+    if (!this.gameWon) {
+      let wait = 3000*Math.random()
+      setTimeout(() => {
+        AI.AIPlay();
+        AI.showPCCards();
+        }, wait)
+    }
   }
 
   play(carta) {
-    Human.sendToDiscard(carta)
-    AI.AIPlay();
-    AI.showPCCards();
+    Human.sendToDiscard(carta);
+    if (!this.gameWon) {
+    let wait = 3000*Math.random()
+      setTimeout(() => {
+      AI.AIPlay();
+      AI.showPCCards();
+      }, wait)
+    }
   }
 
   endMatchWin(player) {
-    alert('Ganó ' + player);
+    alert("Ganó " + player);
     this.cleanup();
   }
 
   endMatchLose(player) {
-    alert('Perdió ' + player);
+    alert("Perdió " + player);
     this.cleanup();
   }
 
