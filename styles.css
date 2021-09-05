@@ -18,7 +18,7 @@ body {
   flex-basis: 100%;
   display: flex;
   align-items: center;
-  height: 15vh;
+  height: 20vh;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -63,6 +63,7 @@ body {
   height: 5rem;
   background: #f5fbf2;
   cursor: pointer;
+  margin-left: 5.2rem;
 }
 
 .playButton:disabled {
@@ -76,6 +77,11 @@ body {
   max-width: 7rem;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  width: 5rem;
+  text-align: center;
+  top: 0;
+  left: 0;
 }
 
 .messageDisplay {
@@ -88,7 +94,7 @@ body {
   text-align: center;
   background: #fff;
   color: #000;
-  width: 18rem;
+  width: 9rem;
   height: 3rem;
   padding: 5px;
 }
@@ -139,21 +145,32 @@ body {
   width: 5rem;
   opacity: 0.75;
   background: #f6edd9;
-  margin: 15px;
+  margin: 10px 0;
 }
 
 .menu {
-  height: 25vh;
-  margin: 25px;
+  height: 50vh;
+  margin: 0 10px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  flex-wrap: wrap;
 }
 
 @media (min-width: 768px) {
+
+  .menu {
+    height: 25vh;
+    margin: 25px;
+    position: unset;
+    flex-wrap: nowrap;
+  }
+
   .messageDisplay {
     height: 6rem;
+    width: 18rem;
   }
   .messageContainer {
     font-weight: 500;
@@ -166,13 +183,25 @@ body {
     max-height: 40vh;
   }
 
+  .rulesHelpContainer {
+    position: unset;
+    text-align: unset;
+    width: unset;
+  }
+  .auxButton{ 
+    margin: 15px;
+  }
+
+  .playButton {
+    margin-left: unset;
+  }
+
   .cardContainer img {
     max-width: 10vw;
     margin: 0;
   }
 
   .cardContainer {
-    height: 20vh;
     justify-content: space-around;
   }
 }
