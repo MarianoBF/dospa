@@ -1,32 +1,22 @@
-async function getFullDeck() {
-  let auxDeck;
-  try {
-    let data = await fetch(
-      "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
-    );
-    auxDeck = await data.json();
-  } catch {
-    alert("No se puedo traer el mazo. Reiniciando partida y reintentando");
-    window.location.reload();
-  }
-  return auxDeck;
-}
-
 async function getDecks() {
   console.log("getting deck")
   let deck;
   //TODO: get several (n) decks
   try {
     let data = await fetch(
-      "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
+      "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=5"
     );
     deck = await data.json();
+    let cards = await fetch(
+      "https://deckofcardsapi.com/api/deck/"+ deck.deck_id +"/draw/?count=260"
+    )
+    cards = await cards.json();
+    deck.cards = cards.cards;
   } catch {
     gameStatus.innerText =
       "No se pudo traer el mazo. Reiniciando partida y reintentando";
   }
   return deck;
-  //TODO retry
 }
 
 function drawCards(cartas, container, type) {
@@ -54,7 +44,8 @@ function showRules() {
       También podés levantar por gusto.
       La máquina va a tirar su carta si tiene o levantar una si no tiene.
       Si te equivocás, se te penalizará con cartas extra
-      Si pasás de las 12 cartas en mano, perdés`
+      Si pasás de las 12 cartas en mano, perdés
+      Se juega con 5 mazos, así que te podes encontrar con cartas repetidas`
   );
 }
 
