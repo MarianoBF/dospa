@@ -1,5 +1,5 @@
 async function getDecks() {
-  console.log("getting deck")
+  console.log("getting deck");
   let deck;
   //TODO: get several (n) decks
   try {
@@ -8,13 +8,14 @@ async function getDecks() {
     );
     deck = await data.json();
     let cards = await fetch(
-      "https://deckofcardsapi.com/api/deck/"+ deck.deck_id +"/draw/?count=260"
-    )
+      "https://deckofcardsapi.com/api/deck/" + deck.deck_id + "/draw/?count=260"
+    );
     cards = await cards.json();
     deck.cards = cards.cards;
   } catch {
     gameStatus.innerText =
       "No se pudo traer el mazo. Reiniciando partida y reintentando";
+    setTimeout(() => window.location.reload(), 5000);
   }
   return deck;
 }

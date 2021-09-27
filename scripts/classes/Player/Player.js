@@ -40,7 +40,8 @@ class Player {
       }
     } else {
       gameError.style.display = "initial";
-      gameError.innerText = "¡Jugada no válida! Se te agrega una carta como penalización.";
+      gameError.innerText =
+        "¡Jugada no válida! Se te agrega una carta como penalización.";
       match.playGetFromPot();
       setTimeout(() => {
         gameError.style.display = "none";
