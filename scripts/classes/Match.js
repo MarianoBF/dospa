@@ -64,7 +64,7 @@ class Match {
 
   play(carta) {
     console.log("played", carta)
-    let another = carta.code[0] === '0'
+    let another = (carta.code[0] === '0' || carta.code[0] === 'J')
     if (another) {
       Human.sendToDiscardAndRepeat(carta);   
       console.log("humano va de nuevo")

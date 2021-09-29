@@ -41,7 +41,7 @@ function showRules() {
     `Dos para el Lobo recauchutado. 
       Para ganar, debés quedarte sin cartas. 
       Sólo podés colocar una carta del mismo palo o número, o bien un 4.
-      Si tirás un 10, ¡tirás otra carta! (del mismo palo)
+      Si tirás un 10 o J, ¡tirás otra carta! (del mismo palo)
       Si ninguna de tus cartas coincide, debés levantar una (click en el pozo!). 
       También podés levantar por gusto.
       La máquina va a tirar su carta si tiene o levantar una si no tiene.
