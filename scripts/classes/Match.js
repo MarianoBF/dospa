@@ -53,8 +53,13 @@ class Match {
   playGetFromPot() {
     // console.log("cards", this.cards);
     Human.getFromPot([this.cards.pop()]);
+    if (helpMode) {
+      gameStatus.innerText = "Turno PC";
+    } else {
+      gameStatus.innerText = "¡Sigue!";
+    }
     if (!this.gameWon) {
-      let wait = 3000 * Math.random();
+      let wait = 1000 + 3000 * Math.random();
       setTimeout(() => {
         PC.PCPlay();
         PC.showBackOfCards();
@@ -72,7 +77,7 @@ class Match {
       Human.sendToDiscard(carta);   
     }
     if (!this.gameWon && !another) {
-      let wait = 3000 * Math.random();
+      let wait = 1000 + 3000 * Math.random();
       setTimeout(() => {
         PC.PCPlay();
         // PC.showPCCards();
