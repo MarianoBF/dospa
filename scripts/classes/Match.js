@@ -30,7 +30,7 @@ class Match {
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
       this.sendToDiscard(this.cards.pop());
-      console.log("cards", this.cards);
+      // console.log("cards", this.cards);
     }, 2500);
     gameStatus.innerText = "Trayendo el mazo...";
   }
@@ -38,7 +38,7 @@ class Match {
   sendToDiscard(card) {
     this.discard.push(card);
     discardImage.src = card.image;
-    console.log("discard", this.discard);
+    // console.log("discard", this.discard);
   }
 
   getTopOfDiscardPile() {
@@ -46,12 +46,12 @@ class Match {
   }
 
   getFromPot() {
-    console.log("cards", this.cards);
+    // console.log("cards", this.cards);
     return [this.cards.pop()];
   }
 
   playGetFromPot() {
-    console.log("cards", this.cards);
+    // console.log("cards", this.cards);
     Human.getFromPot([this.cards.pop()]);
     if (!this.gameWon) {
       let wait = 3000 * Math.random();
@@ -63,24 +63,33 @@ class Match {
   }
 
   play(carta) {
-    Human.sendToDiscard(carta);
-    if (!this.gameWon) {
+    console.log("played", carta)
+    let another = carta.code[0] === '0'
+    if (another) {
+      Human.sendToDiscardAndRepeat(carta);   
+      console.log("humano va de nuevo")
+    } else {
+      Human.sendToDiscard(carta);   
+    }
+    if (!this.gameWon && !another) {
       let wait = 3000 * Math.random();
       setTimeout(() => {
         PC.PCPlay();
-        PC.showPCCards();
+        // PC.showPCCards();
       }, wait);
     }
   }
 
   endMatchWin(player) {
     alert("Ganó " + player);
-    this.cleanup();
+    PC.showPCCards()
+    setTimeout(()=>this.cleanup(),5000);
   }
 
   endMatchLose(player) {
+    PC.showPCCards()
     alert("Perdió " + player);
-    this.cleanup();
+    setTimeout(()=>this.cleanup(),5000);
   }
 
   cleanup() {
