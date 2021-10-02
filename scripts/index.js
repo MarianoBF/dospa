@@ -19,10 +19,12 @@ const tiedMatchCounter = document.getElementById("tiedMatchCounter");
 const pot = document.getElementById("potContainer");
 const discard = document.getElementById("discardContainer");
 const helpModeSelector = document.getElementById("helpModeSelector");
+const dospa = document.getElementById("dospa");
 
 const cardsBack = "./images/back.png";
 
 //Event listeners
+dospa.addEventListener("click", () => Human.dospa());
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
 pot.addEventListener("click", () => match.playGetFromPot());
