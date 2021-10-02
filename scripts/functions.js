@@ -47,7 +47,8 @@ function showRules() {
       La máquina va a tirar su carta si tiene o levantar una si no tiene.
       Si te equivocás, se te penalizará con cartas extra
       Si pasás de las 12 cartas en mano, perdés
-      Se juega con 5 mazos, así que te podes encontrar con cartas repetidas`
+      Se juega con 5 mazos, así que te podes encontrar con cartas repetidas
+      Cuando encuentres que la carta en el descarte coincide con alguna de las que vos tenés, podés apretar el botón !Dospa¡, lo que va a poner esa carta sobre la mesa, de manera paralela al flujo de juego. Pero si lo apretás y no está OK vas a levantar una carta. Cuidado que la PC puede utilizar cada tanto esta regla también.`
   );
 }
 

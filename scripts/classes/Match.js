@@ -30,6 +30,7 @@ class Match {
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
       this.sendToDiscard(this.cards.pop());
+      dospa.disabled = false;
       // console.log("cards", this.cards);
     }, 2500);
     gameStatus.innerText = "Trayendo el mazo...";
@@ -87,6 +88,7 @@ class Match {
 
   endMatchWin(player) {
     alert("Ganó " + player);
+    gameStatus.innerText = "Gano " + player + ", partido terminado."
     PC.showPCCards()
     setTimeout(()=>this.cleanup(),5000);
   }
@@ -107,5 +109,6 @@ class Match {
     PC.cleanUp();
     //TODO: set scores
     start.disabled = false;
+    dospa.disabled = true;
   }
 }
