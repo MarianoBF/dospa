@@ -8,6 +8,8 @@ class PCPlayer extends Player {
     const ref = match.getTopOfDiscardPile();
     const card = this.hand.find((handCard) => checkCard(handCard, ref));
     if (card) {
+      console.log("pc plays", card.code)
+      let another = (card.code[0] === '0' || card.code[0] === 'J')
       let index = this.hand.findIndex(
         (handCard) => handCard.code === card.code
       );
@@ -16,6 +18,9 @@ class PCPlayer extends Player {
       pcContainer.removeChild(pcContainer.lastElementChild);
       if (this.hand.length === 0) {
         match.endMatchWin("PC");
+      } else if (another) {
+          console.log("PC va de nuevo")
+          this.PCPlay();
       }
     } else {
       this.PCGetsFromPot();
@@ -29,6 +34,7 @@ class PCPlayer extends Player {
 
   PCGetsFromPot() {
     let card = match.getFromPot();
+    console.log("pc picked up", card)
     PC.updateHand(card);
     PC.showBackOfCards();
   }
