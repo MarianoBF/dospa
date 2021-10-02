@@ -61,7 +61,7 @@ class Player {
         match.endMatchWin("Humano");
       }
       if (helpMode) {
-        gameStatus.innerText = "Tirá de vuelta";
+        gameStatus.innerText = "Tirá de vuelta (o levantá si no tenés)";
       } else {
         gameStatus.innerText = "¡Sigue!";
       }
@@ -84,5 +84,24 @@ class Player {
 
   cleanUp() {
     this.hand = [];
+  }
+
+  dospa() {
+    const top = match.getTopOfDiscardPile();
+    const coincidence = this.hand.findIndex((item) => item.code === top.code);
+    console.log("dopsa?", top, coincidence, this.hand);
+
+    if (coincidence === -1) {
+      gameError.innerText = "¡Pifiaste! No hay dospa, levantás tres cartas.";
+      match.playGetFromPot();
+      setTimeout(() => {
+        gameError.style.display = "none";
+      }, 2000);
+    } else {
+      this.hand.splice(coincidence, 1);
+      Human.showHumanCards();
+      gameStatus.innerText = "¡Bien jugado el dospa! Sigue el juego..."
+
+    } 
   }
 }
