@@ -25,13 +25,23 @@ class Match {
       discard.style.display = "initial";
       pcContainer.innerHTML = "";
       humanContainer.innerHTML = "";
-      // For Dospacheck
+
+      // ***********For Dospacheck*****************
       // const testDospa = this.cards.splice(0, 2)
       // const HumanTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
       // const PCTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
       // console.log(testDospa)
       // Human.populateHand(HumanTestDospa);
       // PC.populateHand(PCTestDospa);
+
+      // ***********For PickUpCheck*****************
+      const testPickup = this.cards.filter(item=>item.code[0]==='2')
+      const HumanTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
+      const PCTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
+      console.log(testPickup)
+      Human.populateHand(HumanTestPickup);
+      PC.populateHand(PCTestPickup);
+
       Human.populateHand(this.cards.splice(0, 7));
       PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();

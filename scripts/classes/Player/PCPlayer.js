@@ -14,6 +14,9 @@ class PCPlayer extends Player {
     if (coincidence !== -1 && dospaChance > 0.25) {
       console.log("pc dospa with", top.code)
       gameError.innerText = "Te clavó un dospa la máquina!";
+      setTimeout(() => {
+        gameError.style.innerText = "";
+      }, 2000);
       this.hand.splice(coincidence, 1);
       this.showBackOfCards();
     }

@@ -20,7 +20,7 @@ class HumanPlayer extends Player {
         "¡Jugada no válida! Se te agrega una carta como penalización.";
       match.playGetFromPot();
       setTimeout(() => {
-        gameError.style.display = "none";
+        gameError.style.innerText = "";
       }, 2000);
   }
 }
