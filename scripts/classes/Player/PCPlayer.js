@@ -4,7 +4,18 @@ class PCPlayer extends Player {
   }
 
   PCPlay() {
-    console.log("my turn");
+    const top = match.getTopOfDiscardPile();
+    const coincidence = this.hand.findIndex((item) => item.code === top.code);
+    const dospaChance = Math.random()
+    // console.log("pc dospa?", top, coincidence, dospaChance)
+    if (coincidence !== -1 && dospaChance > 0.25) {
+      console.log("pc dospa with", top.code)
+      gameError.innerText = "Te clavó un dospa la máquina!";
+      this.hand.splice(coincidence, 1);
+      this.showBackOfCards();
+    }
+
+    console.log("my turn, my hand is", this.hand);
     const ref = match.getTopOfDiscardPile();
     const card = this.hand.find((handCard) => checkCard(handCard, ref));
     if (card) {
@@ -34,9 +45,9 @@ class PCPlayer extends Player {
 
   PCGetsFromPot() {
     let card = match.getFromPot();
-    console.log("pc picked up", card)
     PC.updateHand(card);
     PC.showBackOfCards();
+    console.log("pc picked up", card, "hand", this.hand)
   }
 
   showBackOfCards() {
