@@ -13,4 +13,14 @@ class HumanPlayer extends Player {
     Human.updateHand(card);
     Human.showHumanCards();
   }
+
+  nonValidMove() {
+    gameError.style.display = "initial";
+      gameError.innerText =
+        "¡Jugada no válida! Se te agrega una carta como penalización.";
+      match.playGetFromPot();
+      setTimeout(() => {
+        gameError.style.display = "none";
+      }, 2000);
+  }
 }

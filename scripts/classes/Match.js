@@ -80,13 +80,17 @@ class Match {
     console.log("human played", carta.code);
     let another = carta.code[0] === "0" || carta.code[0] === "J";
     let pickUp = carta.code[0] === "2";
-    if (another) {
-      Human.sendToDiscardAndRepeat(carta);
-      console.log("humano va de nuevo");
-    } else if (pickup) {
-      Human.send2ToDiscard(carta);
+    if (this.pickUpMode) {
+      !pickUp && human.nonValidMove();
     } else {
-      Human.sendToDiscard(carta);
+      if (another) {
+        Human.sendToDiscardAndRepeat(carta);
+        console.log("humano va de nuevo");
+      } else if (pickUp) {
+        Human.send2ToDiscard(carta);
+      } else {
+        Human.sendToDiscard(carta);
+      }
     }
     if (!this.gameWon && !another) {
       let wait = 1000 + 3000 * Math.random();

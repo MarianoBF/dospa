@@ -4,6 +4,9 @@ class PCPlayer extends Player {
   }
 
   PCPlay() {
+    if (match.pickUpMode) {
+      console.log("a")
+    }
     const top = match.getTopOfDiscardPile();
     const coincidence = this.hand.findIndex((item) => item.code === top.code);
     const dospaChance = Math.random()
