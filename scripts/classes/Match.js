@@ -24,6 +24,13 @@ class Match {
       discard.style.display = "initial";
       pcContainer.innerHTML = "";
       humanContainer.innerHTML = "";
+      // For Dospacheck
+      // const testDospa = this.cards.splice(0, 2)
+      // const HumanTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
+      // const PCTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
+      // console.log(testDospa)
+      // Human.populateHand(HumanTestDospa);
+      // PC.populateHand(PCTestDospa);
       Human.populateHand(this.cards.splice(0, 7));
       PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();
@@ -69,7 +76,7 @@ class Match {
   }
 
   play(carta) {
-    console.log("played", carta)
+    console.log("human played", carta.code)
     let another = (carta.code[0] === '0' || carta.code[0] === 'J')
     if (another) {
       Human.sendToDiscardAndRepeat(carta);   
