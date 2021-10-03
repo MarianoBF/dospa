@@ -42,8 +42,8 @@ class Match {
       Human.populateHand(HumanTestPickup);
       PC.populateHand(PCTestPickup);
 
-      Human.populateHand(this.cards.splice(0, 7));
-      PC.populateHand(this.cards.splice(0, 7));
+      // Human.populateHand(this.cards.splice(0, 7));
+      // PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
@@ -90,8 +90,8 @@ class Match {
     console.log("human played", carta.code);
     let another = carta.code[0] === "0" || carta.code[0] === "J";
     let pickUp = carta.code[0] === "2";
-    if (this.pickUpMode) {
-      !pickUp && human.nonValidMove();
+    if (this.pickUpMode && !pickUp) {
+       human.nonValidMove();
     } else {
       if (another) {
         Human.sendToDiscardAndRepeat(carta);
