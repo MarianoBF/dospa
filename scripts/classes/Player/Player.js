@@ -50,6 +50,35 @@ class Player {
     }
   }
 
+  send2ToDiscard(card) {
+    const ref = match.getTopOfDiscardPile();
+    const result = checkCard(card, ref);
+    if (result) {
+      let index = this.hand.findIndex((handCard) => handCard.code === card);
+      this.hand.splice(index, 1);
+      document.getElementById(card.code).remove();
+      match.sendToDiscard(card);
+      match.pickUpMode = true;
+      if (this.hand.length === 0) {
+        match.endMatchWin("Humano");
+        return
+      }
+      if (helpMode) {
+        gameStatus.innerText = "Turno PC con ronda de 2";
+      } else {
+        gameStatus.innerText = "¡Sigue!";
+      }
+    } else {
+      gameError.style.display = "initial";
+      gameError.innerText =
+        "¡Jugada no válida! Se te agrega una carta como penalización.";
+      match.playGetFromPot();
+      setTimeout(() => {
+        gameError.style.display = "none";
+      }, 2000);
+    }
+  }
+
   sendToDiscardAndRepeat(card) {
     const ref = match.getTopOfDiscardPile();
     const result = checkCard(card, ref);

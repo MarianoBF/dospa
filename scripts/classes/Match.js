@@ -13,6 +13,7 @@ class Match {
     this.cards = [];
     this.discard = [];
     this.deck = {};
+    this.pickUpMode = false;
   }
 
   startRound() {
@@ -76,13 +77,16 @@ class Match {
   }
 
   play(carta) {
-    console.log("human played", carta.code)
-    let another = (carta.code[0] === '0' || carta.code[0] === 'J')
+    console.log("human played", carta.code);
+    let another = carta.code[0] === "0" || carta.code[0] === "J";
+    let pickUp = carta.code[0] === "2";
     if (another) {
-      Human.sendToDiscardAndRepeat(carta);   
-      console.log("humano va de nuevo")
+      Human.sendToDiscardAndRepeat(carta);
+      console.log("humano va de nuevo");
+    } else if (pickup) {
+      Human.send2ToDiscard(carta);
     } else {
-      Human.sendToDiscard(carta);   
+      Human.sendToDiscard(carta);
     }
     if (!this.gameWon && !another) {
       let wait = 1000 + 3000 * Math.random();
@@ -96,17 +100,17 @@ class Match {
   endMatchWin(player) {
     this.gameWon = true;
     alert("Ganó " + player);
-    gameStatus.innerText = "Gano " + player + ", partido terminado."
-    PC.showPCCards()
-    setTimeout(()=>this.cleanup(),5000);
+    gameStatus.innerText = "Gano " + player + ", partido terminado.";
+    PC.showPCCards();
+    setTimeout(() => this.cleanup(), 5000);
   }
 
   endMatchLose(player) {
     this.gameWon = true;
-    PC.showPCCards()
+    PC.showPCCards();
     alert("Perdió " + player);
-    gameStatus.innerText = "Perdió " + player + ", partido terminado."
-    setTimeout(()=>this.cleanup(),5000);
+    gameStatus.innerText = "Perdió " + player + ", partido terminado.";
+    setTimeout(() => this.cleanup(), 5000);
   }
 
   cleanup() {
