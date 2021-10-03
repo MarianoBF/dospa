@@ -29,6 +29,7 @@ class PCPlayer extends Player {
       pcContainer.removeChild(pcContainer.lastElementChild);
       if (this.hand.length === 0) {
         match.endMatchWin("PC");
+        return
       } else if (another) {
           console.log("PC va de nuevo")
           this.PCPlay();

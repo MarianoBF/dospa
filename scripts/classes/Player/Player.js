@@ -32,6 +32,7 @@ class Player {
       match.sendToDiscard(card);
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
+        return
       }
       if (helpMode) {
         gameStatus.innerText = "Turno PC";
@@ -59,6 +60,7 @@ class Player {
       match.sendToDiscard(card);
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
+        return 
       }
       if (helpMode) {
         gameStatus.innerText = "Tirá de vuelta (o levantá si no tenés)";

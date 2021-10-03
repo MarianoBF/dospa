@@ -94,6 +94,7 @@ class Match {
   }
 
   endMatchWin(player) {
+    this.gameWon = true;
     alert("Ganó " + player);
     gameStatus.innerText = "Gano " + player + ", partido terminado."
     PC.showPCCards()
@@ -101,8 +102,10 @@ class Match {
   }
 
   endMatchLose(player) {
+    this.gameWon = true;
     PC.showPCCards()
     alert("Perdió " + player);
+    gameStatus.innerText = "Perdió " + player + ", partido terminado."
     setTimeout(()=>this.cleanup(),5000);
   }
 
