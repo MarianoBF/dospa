@@ -12,7 +12,10 @@ class PCPlayer extends Player {
     if (match.pickUpMode) {
       if (coincidence) {
         let index = this.hand.findIndex(
-          (handCard) => handCard.code === card.code
+          (handCard) => {
+            handCard.code === card.code;
+            console.log("handCard", handCard, card)
+          }
         );
         this.hand.splice(index, 1);
         match.sendToDiscard(card);

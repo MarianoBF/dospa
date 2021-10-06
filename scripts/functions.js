@@ -22,6 +22,10 @@ async function getDecks() {
 
 function drawCards(cartas, container, type) {
   if (cartas.length) {
+    console.log(cartas)
+    if (container == humanContainer) {
+      cartas.sort((a,b)=>a.code>b.code?1:-1)
+    }
     cartas.forEach((carta) => {
       let img = document.createElement("IMG");
       img.src = carta.image;
