@@ -23,6 +23,11 @@ class PCPlayer extends Player {
       } else {
         console.log("no cards for pickup mode");
         this.PCGetsFromPot();
+        match.pickUpMode = false;
+        if (helpMode) {
+          gameStatus.innerText = "La PC no tenía un 2 y tuvo que levantar!";
+          return;
+        }
       }
       if (this.hand.length === 0) {
         match.endMatchWin("PC");
