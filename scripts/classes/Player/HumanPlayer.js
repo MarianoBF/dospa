@@ -21,7 +21,7 @@ class HumanPlayer extends Player {
       match.playGetFromPot();
       match.pickUpMode = false;
       setTimeout(() => {
-        gameError.style.innerText = "";
+        gameError.innerText = "";
       }, 2000);
   }
 }

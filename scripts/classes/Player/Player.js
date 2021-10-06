@@ -45,7 +45,7 @@ class Player {
         "¡Jugada no válida! Se te agrega una carta como penalización.";
       match.playGetFromPot();
       setTimeout(() => {
-        gameError.style.innerText = "";
+        gameError.innerText = "";
       }, 2000);
     }
   }
@@ -74,7 +74,7 @@ class Player {
         "¡Jugada no válida! Se te agrega una carta como penalización.";
       match.playGetFromPot();
       setTimeout(() => {
-        gameError.style.innerText = "";
+        gameError.innerText = "";
       }, 2000);
     }
   }
@@ -102,7 +102,7 @@ class Player {
         "¡Jugada no válida! Se te agrega una carta como penalización.";
       match.playGetFromPot();
       setTimeout(() => {
-        gameError.style.innerText = "";
+        gameError.innerText = "";
       }, 2000);
     }
   }
@@ -126,7 +126,7 @@ class Player {
       gameError.innerText = "¡Pifiaste! No hay dospa, levantás tres cartas.";
       match.playGetFromPot();
       setTimeout(() => {
-        gameError.style.innerText = "";
+        gameError.innerText = "";
       }, 2000);
     } else {
       this.hand.splice(coincidence, 1);

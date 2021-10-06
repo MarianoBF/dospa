@@ -45,7 +45,7 @@ class PCPlayer extends Player {
         console.log("pc dospa with", top.code);
         gameError.innerText = "Te clavó un dospa la máquina!";
         setTimeout(() => {
-          gameError.style.innerText = "";
+          gameError.innerText = "";
         }, 2000);
         this.hand.splice(coincidence, 1);
         this.showBackOfCards();
@@ -69,6 +69,7 @@ class PCPlayer extends Player {
         }
       } else {
         this.PCGetsFromPot();
+        return;
       }
       if (helpMode) {
         gameStatus.innerText = "Turno Humano";
