@@ -7,6 +7,7 @@ class PCPlayer extends Player {
     console.log("my turn, my hand is", this.hand);
     const top = match.getTopOfDiscardPile();
     const coincidence = this.hand.findIndex((item) => item.code === top.code);
+    const card = this.hand.find((handCard) => checkCard(handCard, top));
 
     if (match.pickUpMode) {
       if (coincidence) {
@@ -42,7 +43,6 @@ class PCPlayer extends Player {
         this.showBackOfCards();
       }
 
-      const card = this.hand.find((handCard) => checkCard(handCard, top));
       if (card) {
         console.log("pc plays", card.code);
         let another = card.code[0] === "0" || card.code[0] === "J";
@@ -68,10 +68,13 @@ class PCPlayer extends Player {
         gameStatus.innerText = "¡Sigue!";
       }
     }
+    if (card.code[0]===2) {
+      match.pickUpMode = true;
+    }
   }
 
   PCGetsFromPot() {
-    let card = match.getFromPot();
+    let card = match.getFromPot(1);
     PC.updateHand(card);
     PC.showBackOfCards();
     console.log("pc picked up", card, "hand", this.hand);

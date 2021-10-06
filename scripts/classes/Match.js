@@ -64,9 +64,9 @@ class Match {
     return this.discard[this.discard.length - 1];
   }
 
-  getFromPot() {
+  getFromPot(numberToGet=1) {
     // console.log("cards", this.cards);
-    return [this.cards.pop()];
+    return [this.cards.splice(0,numberToGet)];
   }
 
   playGetFromPot() {
