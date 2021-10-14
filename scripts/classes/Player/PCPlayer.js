@@ -7,16 +7,11 @@ class PCPlayer extends Player {
     console.log("my turn, my hand is", this.hand);
     const top = match.getTopOfDiscardPile();
     const coincidence = this.hand.findIndex((item) => item.code === top.code);
-    const card = this.hand.find((handCard) => checkCard(handCard, top));
+    let card;
 
     if (match.pickUpMode) {
       if (coincidence) {
-        let index = this.hand.findIndex(
-          (handCard) => {
-            handCard.code === card.code;
-            console.log("handCard", handCard, card)
-          }
-        );
+        let index = coincidence;
         this.hand.splice(index, 1);
         match.sendToDiscard(card);
         pcContainer.removeChild(pcContainer.lastElementChild);
@@ -49,7 +44,10 @@ class PCPlayer extends Player {
         }, 2000);
         this.hand.splice(coincidence, 1);
         this.showBackOfCards();
+        setTimeout(()=>{},2000)
       }
+
+      card = this.hand.find((handCard) => checkCard(handCard, top));
 
       if (card) {
         console.log("pc plays", card.code);
@@ -83,7 +81,7 @@ class PCPlayer extends Player {
   }
 
   PCGetsFromPot() {
-    let card = match.getFromPot(1);
+    let card = match.getFromPot(1)[0];
     PC.updateHand(card);
     PC.showBackOfCards();
     console.log("pc picked up", card, "hand", this.hand);
