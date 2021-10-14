@@ -7,11 +7,13 @@ class PCPlayer extends Player {
     console.log("my turn, my hand is", this.hand);
     const top = match.getTopOfDiscardPile();
     const coincidence = this.hand.findIndex((item) => item.code === top.code);
+    const pickUpAlternative = this.hand.findIndex((item) => item.code[0] === top.code[0]);
     let card;
-
+    console.log( "pickup?", match.pickUpMode, "alt?", pickUpAlternative );
     if (match.pickUpMode) {
-      if (coincidence) {
-        let index = coincidence;
+      if (pickUpAlternative !== -1) {
+        card = this.hand.find((item) => item.code[0] === top.code[0]);
+        let index = pickUpAlternative;
         this.hand.splice(index, 1);
         match.sendToDiscard(card);
         pcContainer.removeChild(pcContainer.lastElementChild);

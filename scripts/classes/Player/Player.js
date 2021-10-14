@@ -120,7 +120,7 @@ class Player {
   dospa() {
     const top = match.getTopOfDiscardPile();
     const coincidence = this.hand.findIndex((item) => item.code === top.code);
-    console.log("dopsa?", top, coincidence, this.hand);
+    console.log("dospa?", top, coincidence, this.hand);
 
     if (coincidence === -1) {
       gameError.innerText = "¡Pifiaste! No hay dospa, levantás tres cartas.";
@@ -129,8 +129,10 @@ class Player {
         gameError.innerText = "";
       }, 2000);
     } else {
+      console.log("hand", this.hand, coincidence)
       this.hand.splice(coincidence, 1);
       Human.showHumanCards();
+      console.log("hand", this.hand)
       gameStatus.innerText = "¡Bien jugado el dospa! Sigue el juego..."
 
     } 
