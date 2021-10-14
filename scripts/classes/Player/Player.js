@@ -26,7 +26,8 @@ class Player {
     const ref = match.getTopOfDiscardPile();
     const result = checkCard(card, ref);
     if (result) {
-      let index = this.hand.findIndex((handCard) => handCard.code === card);
+      let index = this.hand.findIndex((handCard) => handCard.code === card.code);
+      console.log("card", card.code)
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
       match.sendToDiscard(card);
@@ -54,7 +55,7 @@ class Player {
     const ref = match.getTopOfDiscardPile();
     const result = checkCard(card, ref);
     if (result) {
-      let index = this.hand.findIndex((handCard) => handCard.code === card);
+      let index = this.hand.findIndex((handCard) => handCard.code === card.code);
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
       match.sendToDiscard(card);
@@ -83,7 +84,7 @@ class Player {
     const ref = match.getTopOfDiscardPile();
     const result = checkCard(card, ref);
     if (result) {
-      let index = this.hand.findIndex((handCard) => handCard.code === card);
+      let index = this.hand.findIndex((handCard) => handCard.code === card.code);
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
       match.sendToDiscard(card);

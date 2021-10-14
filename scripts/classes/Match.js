@@ -103,7 +103,7 @@ class Match {
       }
     }
     if (!this.gameWon && !another) {
-      let wait = 1000 + 3000 * Math.random();
+      let wait = 500 + 3000 * Math.random();
       setTimeout(() => {
         PC.PCPlay();
         // PC.showPCCards();

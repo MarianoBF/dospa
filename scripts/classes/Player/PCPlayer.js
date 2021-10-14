@@ -81,6 +81,11 @@ class PCPlayer extends Player {
     console.log("checkPickUP", card.code[0])
     if (+card.code[0]===2) {
       match.pickUpMode = true;
+      if (helpMode) {
+        gameStatus.innerText = "Turno Humano pero con 2";
+      } else {
+        gameStatus.innerText = "¡Sigue!";
+      }
     }
   }
 
