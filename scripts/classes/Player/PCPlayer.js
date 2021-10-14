@@ -65,6 +65,7 @@ class PCPlayer extends Player {
           return;
         } else if (another) {
           console.log("PC va de nuevo");
+          setTimeout(()=>{},1500)
           this.PCPlay();
         }
       } else {
@@ -77,7 +78,8 @@ class PCPlayer extends Player {
         gameStatus.innerText = "¡Sigue!";
       }
     }
-    if (card.code[0]===2) {
+    console.log("checkPickUP", card.code[0])
+    if (+card.code[0]===2) {
       match.pickUpMode = true;
     }
   }
@@ -87,6 +89,11 @@ class PCPlayer extends Player {
     PC.updateHand(card);
     PC.showBackOfCards();
     console.log("pc picked up", card, "hand", this.hand);
+    if (helpMode) {
+      gameStatus.innerText = "Turno Humano";
+    } else {
+      gameStatus.innerText = "¡Sigue!";
+    }
   }
 
   showBackOfCards() {
