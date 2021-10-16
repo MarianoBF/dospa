@@ -73,67 +73,79 @@ class Match {
   }
 
   playGetFromPot() {
+    if (!this.gameWon === true) {
+
     // if (debug) console.log("cards", this.cards);
-    Human.getFromPot([this.cards.pop()]);
-    if (helpMode) {
-      gameStatus.innerText = "Turno PC";
-    } else {
-      gameStatus.innerText = "¡Sigue!";
-    }
-    if (!this.gameWon) {
-      let wait = 1000 + 3000 * Math.random();
-      setTimeout(() => {
-        PC.PCPlay();
-        PC.showBackOfCards();
-      }, wait);
+      Human.getFromPot([this.cards.pop()])
+      if (helpMode) {
+        gameStatus.innerText = "Turno PC";
+      } else {
+        gameStatus.innerText = "¡Sigue!";
+      }
+      if (!this.gameWon) {
+        let wait = 1000 + 3000 * Math.random();
+        setTimeout(() => {
+          PC.showBackOfCards();
+          PC.PCPlay();
+        }, wait);
+      }
     }
   }
 
   play(carta) {
-    if (debug) console.log("human played", carta.code);
-    let another = carta.code[0] === "0" || carta.code[0] === "J";
-    let pickUp = carta.code[0] === "2";
-    if (this.pickUpMode && !pickUp) {
-       Human.nonValid2Move();
-    } else {
-      if (another) {
-        Human.sendToDiscardAndRepeat(carta);
-        if (debug) console.log("humano va de nuevo");
-      } else if (pickUp) {
-        Human.send2ToDiscard(carta);
+    if (!this.gameWon === true) {
+      if (debug) console.log("human played", carta.code);
+      let another = carta.code[0] === "0" || carta.code[0] === "J";
+      let pickUp = carta.code[0] === "2";
+      if (this.pickUpMode && !pickUp) {
+        Human.nonValid2Move();
       } else {
-        Human.sendToDiscard(carta);
+        if (another) {
+          Human.sendToDiscardAndRepeat(carta);
+          if (debug) console.log("humano va de nuevo");
+        } else if (pickUp) {
+          Human.send2ToDiscard(carta);
+        } else {
+          Human.sendToDiscard(carta);
+        }
       }
-    }
-    if (!this.gameWon && !another) {
-      let wait = 500 + 3000 * Math.random();
-      setTimeout(() => {
-        PC.PCPlay();
-        // PC.showPCCards();
-      }, wait);
+      if (!this.gameWon && !another) {
+        let wait = 500 + 3000 * Math.random();
+        setTimeout(() => {
+          PC.PCPlay();
+          // PC.showPCCards();
+        }, wait);
+      }
     }
   }
 
   endMatchWin(player) {
+    if (player === 'Humano') {
+      Human.matchesWon++
+    } else {
+      PC.matchesWon++
+    }
     this.gameWon = true;
     alert("Ganó " + player);
-    gameStatus.innerText = "Gano " + player + ", partido terminado.";
-    PC.showPCCards();
-    setTimeout(() => this.cleanup(), 5000);
+    setTimeout(() => this.cleanup("Gano " + player + ", partido terminado."), 2000);
   }
 
   endMatchLose(player) {
+    if (player === 'Humano') {
+      PC.matchesWon++
+    } else {
+      Human.matchesWon++
+    }
     this.gameWon = true;
-    PC.showPCCards();
     alert("Perdió " + player);
-    gameStatus.innerText = "Perdió " + player + ", partido terminado.";
-    setTimeout(() => this.cleanup(), 5000);
+    setTimeout(() => this.cleanup("Perdió " + player + ", partido terminado."), 2000);
   }
 
-  cleanup() {
-    gameStatus.innerText = "Terminó el partido, ¿querés jugar otro?";
-    pcContainer.innerHTML = "";
-    humanContainer.innerHTML = "";
+  cleanup(message) {
+    PC.showPCCards();
+    gameStatus.innerText = message;
+    // pcContainer.innerHTML = "";
+    // humanContainer.innerHTML = "";
     pot.style.display = "none";
     discard.style.display = "none";
     Human.cleanUp();
