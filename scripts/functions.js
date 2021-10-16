@@ -1,5 +1,5 @@
 async function getDecks() {
-  console.log("getting deck");
+  if (debug) console.log("getting deck");
   let deck;
   //TODO: get several (n) decks
   try {
@@ -22,7 +22,7 @@ async function getDecks() {
 
 function drawCards(cartas, container, type) {
   if (cartas.length) {
-    console.log(cartas)
+    if (debug) console.log(cartas)
     if (container == humanContainer) {
       cartas.sort((a,b)=>a.code>b.code?1:-1)
     }

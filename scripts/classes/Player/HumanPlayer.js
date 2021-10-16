@@ -9,7 +9,7 @@ class HumanPlayer extends Player {
   }
 
   getFromPot(card) {
-    // console.log("card", card);
+    // if (debug) console.log("card", card);
     Human.updateHand(card);
     Human.showHumanCards();
   }

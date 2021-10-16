@@ -30,7 +30,7 @@ class Match {
       // const testDospa = this.cards.splice(0, 2)
       // const HumanTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
       // const PCTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
-      // console.log(testDospa)
+      // if (debug) console.log(testDospa)
       // Human.populateHand(HumanTestDospa);
       // PC.populateHand(PCTestDospa);
 
@@ -38,7 +38,7 @@ class Match {
       const testPickup = this.cards.filter(item=>item.code[0]==='2')
       const HumanTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
       const PCTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
-      console.log(testPickup)
+      if (debug) console.log(testPickup)
       Human.populateHand(HumanTestPickup);
       PC.populateHand(PCTestPickup);
 
@@ -49,7 +49,7 @@ class Match {
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
       this.sendToDiscard(this.cards.pop());
       dospa.disabled = false;
-      // console.log("cards", this.cards);
+      // if (debug) console.log("cards", this.cards);
     }, 2500);
     gameStatus.innerText = "Trayendo el mazo...";
   }
@@ -57,7 +57,7 @@ class Match {
   sendToDiscard(card) {
     this.discard.push(card);
     discardImage.src = card.image;
-    // console.log("discard", this.discard);
+    if (debug) console.log("discard", this.discard);
   }
 
   getTopOfDiscardPile() {
@@ -65,12 +65,12 @@ class Match {
   }
 
   getFromPot(numberToGet=1) {
-    // console.log("cards", this.cards);
+    // if (debug) console.log("cards", this.cards);
     return [this.cards.splice(0,numberToGet)];
   }
 
   playGetFromPot() {
-    // console.log("cards", this.cards);
+    // if (debug) console.log("cards", this.cards);
     Human.getFromPot([this.cards.pop()]);
     if (helpMode) {
       gameStatus.innerText = "Turno PC";
@@ -87,7 +87,7 @@ class Match {
   }
 
   play(carta) {
-    console.log("human played", carta.code);
+    if (debug) console.log("human played", carta.code);
     let another = carta.code[0] === "0" || carta.code[0] === "J";
     let pickUp = carta.code[0] === "2";
     if (this.pickUpMode && !pickUp) {
@@ -95,7 +95,7 @@ class Match {
     } else {
       if (another) {
         Human.sendToDiscardAndRepeat(carta);
-        console.log("humano va de nuevo");
+        if (debug) console.log("humano va de nuevo");
       } else if (pickUp) {
         Human.send2ToDiscard(carta);
       } else {

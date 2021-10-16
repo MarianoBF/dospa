@@ -4,12 +4,12 @@ class PCPlayer extends Player {
   }
 
   PCPlay() {
-    console.log("my turn, my hand is", this.hand);
+    if (debug) console.log("my turn, my hand is", this.hand);
     const top = match.getTopOfDiscardPile();
     const coincidence = this.hand.findIndex((item) => item.code === top.code);
     const pickUpAlternative = this.hand.findIndex((item) => item.code[0] === top.code[0]);
     let card;
-    console.log( "pickup?", match.pickUpMode, "alt?", pickUpAlternative );
+    if (debug) console.log( "pickup?", match.pickUpMode, "alt?", pickUpAlternative );
     if (match.pickUpMode) {
       if (pickUpAlternative !== -1) {
         card = this.hand.find((item) => item.code[0] === top.code[0]);
@@ -18,7 +18,7 @@ class PCPlayer extends Player {
         match.sendToDiscard(card);
         pcContainer.removeChild(pcContainer.lastElementChild);
       } else {
-        console.log("no cards for pickup mode");
+        if (debug) console.log("no cards for pickup mode");
         this.PCGetsFromPot();
         match.pickUpMode = false;
         if (helpMode) {
@@ -37,9 +37,9 @@ class PCPlayer extends Player {
       }
     } else {
       const dospaChance = Math.random();
-      // console.log("pc dospa?", top, coincidence, dospaChance)
+      if (debug) console.log("pc dospa?", top, coincidence, dospaChance)
       if (coincidence !== -1 && dospaChance > 0.25) {
-        console.log("pc dospa with", top.code);
+        if (debug) console.log("pc dospa with", top.code);
         gameError.innerText = "Te clavó un dospa la máquina!";
         setTimeout(() => {
           gameError.innerText = "";
@@ -52,7 +52,7 @@ class PCPlayer extends Player {
       card = this.hand.find((handCard) => checkCard(handCard, top));
 
       if (card) {
-        console.log("pc plays", card.code);
+        if (debug) console.log("pc plays", card.code);
         let another = card.code[0] === "0" || card.code[0] === "J";
         let index = this.hand.findIndex(
           (handCard) => handCard.code === card.code
@@ -64,7 +64,7 @@ class PCPlayer extends Player {
           match.endMatchWin("PC");
           return;
         } else if (another) {
-          console.log("PC va de nuevo");
+          if (debug) console.log("PC va de nuevo");
           setTimeout(()=>{},1500)
           this.PCPlay();
         }
@@ -78,7 +78,7 @@ class PCPlayer extends Player {
         gameStatus.innerText = "¡Sigue!";
       }
     }
-    console.log("checkPickUP", card.code[0])
+    if (debug) console.log("checkPickUP", card.code[0])
     if (+card.code[0]===2) {
       match.pickUpMode = true;
       if (helpMode) {
@@ -93,7 +93,7 @@ class PCPlayer extends Player {
     let card = match.getFromPot(1)[0];
     PC.updateHand(card);
     PC.showBackOfCards();
-    console.log("pc picked up", card, "hand", this.hand);
+    if (debug) console.log("pc picked up", card, "hand", this.hand);
     if (helpMode) {
       gameStatus.innerText = "Turno Humano";
     } else {
