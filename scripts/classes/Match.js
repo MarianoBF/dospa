@@ -23,6 +23,7 @@ class Match {
     start.disabled = true;
     getDecks().then((res) => (this.deck = res));
     setTimeout(() => {
+      this.gameWon = false;
       this.cards = this.deck.cards;
       pot.style.display = "initial";
       discard.style.display = "initial";
@@ -142,6 +143,8 @@ class Match {
   }
 
   cleanup(message) {
+    humanMatchCounter.value = Human.matchesWon
+    pcMatchCounter.value = PC.matchesWon
     PC.showPCCards();
     gameStatus.innerText = message;
     // pcContainer.innerHTML = "";

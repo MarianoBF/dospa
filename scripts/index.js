@@ -17,7 +17,6 @@ const gameStatus = document.getElementById("status");
 const gameError = document.getElementById("warning");
 const humanMatchCounter = document.getElementById("humanMatchCounter");
 const pcMatchCounter = document.getElementById("pcMatchCounter");
-const tiedMatchCounter = document.getElementById("tiedMatchCounter");
 const pot = document.getElementById("potContainer");
 const discard = document.getElementById("discardContainer");
 const helpModeSelector = document.getElementById("helpModeSelector");
