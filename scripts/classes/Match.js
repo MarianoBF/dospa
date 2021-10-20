@@ -86,6 +86,7 @@ class Match {
       if (!this.gameWon) {
         let wait = 1000 + 3000 * Math.random();
         setTimeout(() => {
+          if (debug) console.log("pc waiting for you");
           PC.showBackOfCards();
           PC.PCPlay();
         }, wait);
@@ -113,6 +114,7 @@ class Match {
       if (!this.gameWon && !another) {
         let wait = 500 + 3000 * Math.random();
         setTimeout(() => {
+          if (debug) console.log("pc waiting for you");
           PC.PCPlay();
           // PC.showPCCards();
         }, wait);

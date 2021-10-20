@@ -47,7 +47,9 @@ class PCPlayer extends Player {
           }, 2000);
           this.hand.splice(coincidence, 1);
           this.showBackOfCards();
-          setTimeout(()=>{},2000)
+          setTimeout(()=>{
+            if (debug) console.log("pc waiting for you");
+          },2000)
         }
 
         card = this.hand.find((handCard) => checkCard(handCard, top));
@@ -66,7 +68,9 @@ class PCPlayer extends Player {
             return;
           } else if (another) {
             if (debug) console.log("PC va de nuevo");
-            setTimeout(()=>{},1500)
+            setTimeout(()=>{
+              if (debug) console.log("pc waiting for you");
+            },1500)
             this.PCPlay();
           }
         } else {

@@ -44,7 +44,8 @@ function showRules() {
   alert(
     `Dos para el Lobo recauchutado. 
       Para ganar, debés quedarte sin cartas. 
-      Sólo podés colocar una carta del mismo palo o número, o bien un 4.
+      Incluso si es una carta especial, la carta inicial no influye en el juego, es sólo para disparar la acción.
+      Sólo podés colocar una carta del mismo palo o número que la que está en la pila de descarte, o bien un 4 que funciona como comodín (luego sigue el palo del 4).
       Si tirás un 10 o J, ¡tirás otra carta! (del mismo palo)
       Si alguna tira un 2, el otro debe tirar un 2, o levantar carta si no tiene ninguno. Después el oponente sigue tirando cualquier carta. 
       Si ninguna de tus cartas coincide, debés levantar una (click en el pozo!). 
