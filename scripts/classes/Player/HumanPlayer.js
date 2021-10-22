@@ -17,8 +17,8 @@ class HumanPlayer extends Player {
   nonValid2Move() {
     gameError.style.display = "initial";
       gameError.innerText =
-        "¡Jugada no válida! Se te agrega una carta como penalización.";
-      match.playGetFromPot();
+        "¡Jugada no válida! Se te agregan tres cartas como penalización.";
+      match.playGetFromPot(3);
       match.pickUpMode = false;
       setTimeout(() => {
         gameError.innerText = "";

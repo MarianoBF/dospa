@@ -73,11 +73,17 @@ class Match {
     return [this.cards.splice(0,numberToGet)];
   }
 
-  playGetFromPot() {
+  playGetFromPot(cardsToGet = 1) {
     if (!this.gameWon === true) {
-
+      const cards = this.cards.splice(0,cardsToGet)
+      if (debug)  console.log("getFromPot", cards)
+      for (const card of cards) { 
+        if (debug) console.log("card", card)
+        const cardToAdd = [];
+        cardToAdd.push(card);
+        Human.getFromPot(cardToAdd)
+      } 
     // if (debug) console.log("cards", this.cards);
-      Human.getFromPot([this.cards.pop()])
       if (helpMode) {
         gameStatus.innerText = "Turno PC";
       } else {

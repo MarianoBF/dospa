@@ -47,7 +47,7 @@ function showRules() {
       Incluso si es una carta especial, la carta inicial no influye en el juego, es sólo para disparar la acción.
       Sólo podés colocar una carta del mismo palo o número que la que está en la pila de descarte, o bien un 4 que funciona como comodín (luego sigue el palo del 4).
       Si tirás un 10 o J, ¡tirás otra carta! (del mismo palo)
-      Si alguna tira un 2, el otro debe tirar un 2, o levantar carta si no tiene ninguno. Después el oponente sigue tirando cualquier carta. 
+      Si alguna tira un 2, el otro debe tirar un 2, o levantar carta si no tiene ninguno. Después el oponente sigue tirando cualquier carta. Pero si tirás una carta que no corresponde, te penalizarán con 3 cartas. 
       Si ninguna de tus cartas coincide, debés levantar una (click en el pozo!). 
       También podés levantar por gusto.
       La máquina va a tirar su carta si tiene o levantar una si no tiene.
