@@ -3,7 +3,7 @@ let PC = new PCPlayer("PC");
 let match = new Match();
 let helpMode = true;
 
-const debug = true;
+const debug = false;
 
 //Referencias
 const discardContainer = document.getElementById("discardContainer");

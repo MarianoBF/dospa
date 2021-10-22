@@ -56,6 +56,12 @@ class PCPlayer extends Player {
         }
 
         card = this.hand.find((handCard) => checkCard(handCard, top));
+ 
+        if (debug) console.log(match.getTopOfDiscardPile().code[0]==='2', card, match.pickUpMode);
+       
+        if (!card && !match.pickUpMode && match.getTopOfDiscardPile().code[0]==='2') {
+          card = this.hand.pop()[0];
+        }
 
         if (card) {
           if (debug) console.log("pc plays", card.code);

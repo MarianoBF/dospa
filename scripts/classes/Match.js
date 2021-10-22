@@ -41,15 +41,15 @@ class Match {
       // PC.populateHand(PCTestDospa);
 
       // ***********For PickUpCheck*****************
-      const testPickup = this.cards.filter(item=>item.code[0]==='2')
-      const HumanTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
-      const PCTestPickup = [...testPickup.splice(0,1), ...this.cards.splice(0, 6)]
-      if (debug) console.log(testPickup)
-      Human.populateHand(HumanTestPickup);
-      PC.populateHand(PCTestPickup);
+      // const testPickup = this.cards.filter(item=>item.code[0]==='2')
+      // const HumanTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
+      // const PCTestPickup = [...testPickup.splice(0,1), ...this.cards.splice(0, 6)]
+      // if (debug) console.log(testPickup)
+      // Human.populateHand(HumanTestPickup);
+      // PC.populateHand(PCTestPickup);
 
-      // Human.populateHand(this.cards.splice(0, 7));
-      // PC.populateHand(this.cards.splice(0, 7));
+      Human.populateHand(this.cards.splice(0, 7));
+      PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
