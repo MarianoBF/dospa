@@ -17,11 +17,14 @@ class PCPlayer extends Player {
           let index = pickUpAlternative;
           this.hand.splice(index, 1);
           match.sendToDiscard(card);
+          match.pickUpCounter++
+          if (debug) console.log("pucounter", match.pickUpCounter)
           pcContainer.removeChild(pcContainer.lastElementChild);
         } else {
           if (debug) console.log("no cards for pickup mode");
           this.PCGetsFromPot();
           match.pickUpMode = false;
+          match.pickUpCounter = 0;
           if (helpMode) {
             gameStatus.innerText = "La PC no tenía un 2 y tuvo que levantar!";
             return;
@@ -86,6 +89,8 @@ class PCPlayer extends Player {
       if (debug) console.log("checkPickUP", card.code[0])
       if (+card.code[0]===2) {
         match.pickUpMode = true;
+        match.pickUpCounter++
+        if (debug) console.log("pucounter", match.pickUpCounter)
         if (helpMode) {
           gameStatus.innerText = "Turno Humano pero con 2";
         } else {

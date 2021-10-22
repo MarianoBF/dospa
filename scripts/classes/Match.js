@@ -6,6 +6,7 @@ class Match {
   cards;
   discard;
   pickUpMode;
+  pickUpCounter;
   endedPickUp;
 
   constructor() {
@@ -17,6 +18,7 @@ class Match {
     this.deck = {};
     this.pickUpMode = false;
     this.endedPickUp = false;
+    this.pickUpCounter = 0;
   }
 
   startRound() {
@@ -39,15 +41,15 @@ class Match {
       // PC.populateHand(PCTestDospa);
 
       // ***********For PickUpCheck*****************
-      // const testPickup = this.cards.filter(item=>item.code[0]==='2')
-      // const HumanTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
-      // const PCTestPickup = [...testPickup.splice(0,1), ...this.cards.splice(0, 6)]
-      // if (debug) console.log(testPickup)
-      // Human.populateHand(HumanTestPickup);
-      // PC.populateHand(PCTestPickup);
+      const testPickup = this.cards.filter(item=>item.code[0]==='2')
+      const HumanTestPickup = [...testPickup.splice(0,2), ...this.cards.splice(0, 5)]
+      const PCTestPickup = [...testPickup.splice(0,1), ...this.cards.splice(0, 6)]
+      if (debug) console.log(testPickup)
+      Human.populateHand(HumanTestPickup);
+      PC.populateHand(PCTestPickup);
 
-      Human.populateHand(this.cards.splice(0, 7));
-      PC.populateHand(this.cards.splice(0, 7));
+      // Human.populateHand(this.cards.splice(0, 7));
+      // PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
@@ -73,12 +75,14 @@ class Match {
     return [this.cards.splice(0,numberToGet)];
   }
 
-  playGetFromPot(cardsToGet = 1) {
+  playGetFromPot(numberToGet = 1) {
     if (!this.gameWon === true) {
-      const cards = this.cards.splice(0,cardsToGet)
+      if (this.pickUpMode) {
+        numberToGet = 1 + this.pickUpCounter;
+      }
+      const cards = this.cards.splice(0,numberToGet)
       if (debug)  console.log("getFromPot", cards)
       for (const card of cards) { 
-        if (debug) console.log("card", card)
         const cardToAdd = [];
         cardToAdd.push(card);
         Human.getFromPot(cardToAdd)
@@ -88,6 +92,13 @@ class Match {
         gameStatus.innerText = "Turno PC";
       } else {
         gameStatus.innerText = "¡Sigue!";
+      }
+      if (this.pickUpMode) {
+        if (helpMode) {
+          gameStatus.innerText = "Levantaste por el dos, ahora es turno PC";
+        } else {
+          gameStatus.innerText = "¡Sigue!";
+        }
       }
       if (!this.gameWon) {
         let wait = 1000 + 3000 * Math.random();

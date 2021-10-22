@@ -43,8 +43,8 @@ class Player {
     } else {
       gameError.style.display = "initial";
       gameError.innerText =
-        "¡Jugada no válida! Se te agrega una carta como penalización.";
-      match.playGetFromPot();
+        "¡Jugada no válida! Se te agregan dos cartas como penalización.";
+      match.playGetFromPot(2);
       setTimeout(() => {
         gameError.innerText = "";
       }, 2000);
@@ -60,6 +60,8 @@ class Player {
       document.getElementById(card.code).remove();
       match.sendToDiscard(card);
       match.pickUpMode = true;
+      match.pickUpCounter++
+      if (debug) console.log("pucounter", match.pickUpCounter)
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
         return
@@ -72,8 +74,8 @@ class Player {
     } else {
       gameError.style.display = "initial";
       gameError.innerText =
-        "¡Jugada no válida! Se te agrega una carta como penalización.";
-      match.playGetFromPot();
+        "¡Jugada no válida! Se te agregan dos cartas como penalización.";
+      match.playGetFromPot(2);
       setTimeout(() => {
         gameError.innerText = "";
       }, 2000);
@@ -100,8 +102,8 @@ class Player {
     } else {
       gameError.style.display = "initial";
       gameError.innerText =
-        "¡Jugada no válida! Se te agrega una carta como penalización.";
-      match.playGetFromPot();
+        "¡Jugada no válida! Se te agregan dos cartas como penalización.";
+      match.playGetFromPot(2);
       setTimeout(() => {
         gameError.innerText = "";
       }, 2000);
@@ -125,7 +127,7 @@ class Player {
 
     if (coincidence === -1) {
       gameError.innerText = "¡Pifiaste! No hay dospa, levantás tres cartas.";
-      match.playGetFromPot();
+      match.playGetFromPot(3);
       setTimeout(() => {
         gameError.innerText = "";
       }, 2000);
