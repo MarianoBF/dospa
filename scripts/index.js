@@ -26,7 +26,7 @@ const cardsBack = "./images/back.png";
 
 //Event listeners
 dospa.addEventListener("click", () => Human.dospa());
-rules.addEventListener("click", showRules);
+rules.addEventListener("click", () => showRulesModal());
 start.addEventListener("click", () => match.startRound());
 pot.addEventListener("click", () => match.playGetFromPot());
 helpModeSelector.addEventListener("change", () => {

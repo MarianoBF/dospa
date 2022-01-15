@@ -16,7 +16,6 @@
   <div id="humanContainer" class="cardContainer"></div>
 
   <div class="menu">
-
     <button class="playButton" id="start">Iniciar nuevo partido</button>
 
     <div class="messageContainer">
@@ -29,11 +28,11 @@
       </div>
     </div>
     <div id="potContainer" class="potContainer">
-      <img src="images/back.png">
+      <img src="images/back.png" />
       <p>Pozo</p>
     </div>
     <div id="discardContainer" class="potContainer">
-      <img id="discardImage" src="images/back.png">
+      <img id="discardImage" src="images/back.png" />
       <p>Descarte</p>
     </div>
     <div class="messageContainer">
@@ -45,7 +44,7 @@
         </label>
         <label>PC
           <input class="counter" id="pcMatchCounter" type="text" value="0" readonly />
-        </label>
+          </input>
       </div>
     </div>
     <div class="rulesHelpContainer">
@@ -55,6 +54,67 @@
     </div>
   </div>
   <div id="pcContainer" class="cardContainer"></div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modalContainer">
+      <h1>Dos para el Lobo reversionado</h1>
+      <h3>Reglas básicas</h3>
+      <ul>
+        <li>Para ganar, debés quedarte sin cartas.</li>
+        <li>
+          Sólo podés colocar una carta del mismo palo o número que la que está
+          en la pila de descarte, o bien un 4 que funciona como comodín (luego
+          sigue el palo del 4).
+        </li>
+        <li>
+          La carta inicial no influye en el juego, incluso si es una carta
+          especial, es sólo para disparar la acción.
+        </li>
+        <li>
+          Si ninguna de tus cartas coincide, debés levantar una (¡click en el
+          pozo!).
+        </li>
+        <li>Si pasás de las 12 cartas en mano, perdés.</li>
+        <li>
+          La máquina va a tirar su carta si tiene o levantar una si no tiene.
+        </li>
+      </ul>
+
+      <h3>Reglas adicionales</h3>
+      <ul>
+        <li>También podés levantar cartas extra por gusto.</li>
+        <li>Si te equivocás, se te penalizará con cartas extra.</li>
+        <li>
+          Se juega con 3 mazos, así que te podes encontrar con cartas
+          repetidas, cuando encuentres que la carta en el descarte coincide
+          con alguna de las que vos tenés, podés apretar el botón !Dospa¡, lo
+          que va a poner esa carta sobre la mesa, de manera paralela al flujo
+          de juego. Pero si lo apretás y no está OK vas a levantar tres
+          cartas. Cuidado que la PC puede utilizar cada tanto esta regla
+          también.
+        </li>
+      </ul>
+
+      <h3>Cartas especiales</h3>
+      <ul>
+        <li>Si tirás un 10 o J, ¡tirás otra carta! (del mismo palo)</li>
+        <li>
+          Si alguna tira un 2, el otro debe tirar un 2, o levantar carta si no
+          tiene ninguno.
+        </li>
+        <li>
+          Después el oponente sigue tirando cualquier carta. Pero si tirás una
+          carta que no corresponde, te penalizarán con 3 cartas, más una por
+          cada ronda de 2 acumulada (o esta última cantidad si levantás del
+          pozo cuando no tengas).
+        </li>
+      </ul>
+
+      <button class="modalClose" id="modalClose">Cerrar</button>
+    </div>
+  </div>
+
   <script src="./scripts/functions.js"></script>
   <script src="./scripts/classes/Player/Player.js"></script>
   <script src="./scripts/classes/Player/HumanPlayer.js"></script>
