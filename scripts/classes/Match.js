@@ -5,7 +5,7 @@ class Match {
   deck;
   cards;
   discard;
-  //pickUpMode es cuando arranca la ronda de ir levantando 2**n cartas
+  // pickUpMode es cuando arranca la ronda de ir levantando 2**n cartas
   pickUpMode;
   pickUpCounter;
   endedPickUp;
@@ -23,7 +23,11 @@ class Match {
   }
 
   startRound() {
+    helpModeSelector.disabled = true;
     start.disabled = true;
+    start.classList.add("hidden-small");
+    rulesHelpContainer.classList.add("hidden-small");
+
     getDecks().then((res) => (this.deck = res));
     setTimeout(() => {
       this.gameWon = false;
@@ -176,5 +180,8 @@ class Match {
     //TODO: set scores
     start.disabled = false;
     dospa.disabled = true;
+    helpModeSelector.disabled = false;
+    start.classList.remove("hidden-small");
+    rulesHelpContainer.classList.remove("hidden-small");
   }
 }

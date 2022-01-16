@@ -110,7 +110,7 @@ body {
   padding: 10px;
 }
 
-.messageContainer {
+.statusMessageContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,19 +120,29 @@ body {
   padding: 3px;
 }
 
-.messageContainer h2 {
+.messageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 400;
+  font-size: 1.1em;
+  line-height: 1.1em;
+  padding: 3px;
+}
+
+.messageContainer h2, .statusMessageContainer h2 {
   margin: 0;
   font-size: 0.9em;
 }
 
-.messageContainer label {
+.messageContainer label, .statusMessageContainer label {
   font-size: 0.7em;
   width: 100%;
   display: flex;
   align-items: center;
 }
 
-.messageContainer label input {
+.messageContainer label input, .statusMessageContainer label input {
   height: 1em;
   width: 1em;
   margin-left: auto;
@@ -171,6 +181,10 @@ body {
   align-items: center;
   position: relative;
   flex-wrap: wrap;
+}
+
+.hidden-small {
+  display: none;
 }
 
 /* MODAL */
@@ -234,7 +248,7 @@ body {
     height: 6rem;
     width: 18rem;
   }
-  .messageContainer {
+  .messageContainer, .statusMessageContainer {
     font-weight: 500;
     font-size: 1.5em;
     line-height: 1.5em;
@@ -266,13 +280,17 @@ body {
   .cardContainer {
     justify-content: space-around;
   }
+
+  .hidden-small {
+    display: none;
+  }
 }
 
 @media (min-width: 1024px) {
   .messageDisplay {
     height: 6rem;
   }
-  .messageContainer {
+  .messageContainer, .statusMessageContainer {
     font-weight: 500;
     font-size: 1.5em;
     line-height: 1.5em;
