@@ -5,6 +5,7 @@ class Match {
   deck;
   cards;
   discard;
+  //pickUpMode es cuando arranca la ronda de ir levantando 2**n cartas
   pickUpMode;
   pickUpCounter;
   endedPickUp;

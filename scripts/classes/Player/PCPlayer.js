@@ -41,7 +41,7 @@ class PCPlayer extends Player {
         }
       } else {
         const dospaChance = Math.random();
-        if (debug) console.log("pc dospa?", top, coincidence, dospaChance)
+        if (debug) console.log("pc dospa?", "index: ", coincidence, dospaChance)
         if (coincidence !== -1 && dospaChance > 0.25) {
           if (debug) console.log("pc dospa with", top.code);
           gameError.innerText = "Te clavó un dospa la máquina!";
@@ -57,7 +57,7 @@ class PCPlayer extends Player {
 
         card = this.hand.find((handCard) => checkCard(handCard, top));
  
-        if (debug) console.log(match.getTopOfDiscardPile().code[0]==='2', card, match.pickUpMode);
+        if (debug) console.log("first card is 2?", match.getTopOfDiscardPile().code[0]==='2', "currentCard", card.code, "isPickup mode active?", match.pickUpMode);
        
         if (!card && !match.pickUpMode && match.getTopOfDiscardPile().code[0]==='2') {
           card = this.hand.pop()[0];
