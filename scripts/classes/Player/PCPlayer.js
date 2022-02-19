@@ -26,7 +26,7 @@ class PCPlayer extends Player {
           match.pickUpMode = false;
           match.pickUpCounter = 0;
           if (helpMode) {
-            gameStatus.innerText = "La PC no tenía un 2 y tuvo que levantar!";
+            gameStatus.innerText = "La PC no tenía un 2 y tuvo que levantar! \n Turno humano";
             return;
           }
         }
