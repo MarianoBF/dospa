@@ -22,6 +22,9 @@ const discard = document.getElementById("discardContainer");
 const helpModeSelector = document.getElementById("helpModeSelector");
 const rulesHelpContainer = document.getElementsByClassName("rulesHelpContainer")[0];
 const dospa = document.getElementById("dospa");
+const modalFinal = document.getElementById("modalFinal");
+const modalFinalClose = document.getElementById("modalFinalClose");
+const modalFinalMessage = document.getElementById("modalFinalMessage");
 
 const cardsBack = "./images/back.png";
 

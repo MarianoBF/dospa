@@ -53,6 +53,10 @@ class Match {
       // Human.populateHand(HumanTestPickup);
       // PC.populateHand(PCTestPickup);
 
+      // ************FAST WIN ************************
+      // Human.populateHand([this.cards.find(item=>item.code[0]==='4')]);
+
+      
       Human.populateHand(this.cards.splice(0, 7));
       PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();
@@ -151,7 +155,11 @@ class Match {
       PC.matchesWon++
     }
     this.gameWon = true;
-    alert("Ganó " + player);
+    modalFinalMessage.innerText = "Ganó " + player
+    modalFinal.classList.add("openModal");
+    modalFinalClose.addEventListener("click", () => {
+      modalFinal.classList.remove("openModal");
+    });
     setTimeout(() => this.cleanup("Gano " + player + ", partido terminado."), 2000);
   }
 
