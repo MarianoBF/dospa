@@ -25,4 +25,26 @@ class HumanPlayer extends Player {
         gameError.innerText = "";
       }, 2000);
   }
+
+  dospa() {
+    const top = match.getTopOfDiscardPile();
+    const coincidence = this.hand.findIndex((item) => item.code === top.code);
+    if (debug) console.log("dospa?", top, coincidence, this.hand);
+
+    if (coincidence === -1) {
+      gameError.innerText = "¡Pifiaste! No hay dospa, levantás tres cartas.";
+      match.playGetFromPot(3);
+      setTimeout(() => {
+        gameError.innerText = "";
+      }, 2000);
+    } else {
+      PC.PCGetsFromPot(3)
+      if (debug) console.log("hand", this.hand, coincidence)
+      this.hand.splice(coincidence, 1);
+      Human.showHumanCards();
+      if (debug) console.log("hand", this.hand)
+      gameStatus.innerText = "¡Bien jugado el dospa! Sigue el juego..."
+
+    } 
+  }
 }

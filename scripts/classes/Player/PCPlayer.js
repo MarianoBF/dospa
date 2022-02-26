@@ -48,6 +48,7 @@ class PCPlayer extends Player {
           setTimeout(() => {
             gameError.innerText = "";
           }, 2000);
+          match.playGetFromPot(2);
           this.hand.splice(coincidence, 1);
           this.showBackOfCards();
           setTimeout(()=>{
@@ -106,8 +107,8 @@ class PCPlayer extends Player {
     }
   }
 
-  PCGetsFromPot() {
-    let card = match.getFromPot(1)[0];
+  PCGetsFromPot(quantity=1) {
+    let card = match.getFromPot(quantity)[0];
     PC.updateHand(card);
     PC.showBackOfCards();
     if (debug) console.log("pc picked up", card, "hand", this.hand);
