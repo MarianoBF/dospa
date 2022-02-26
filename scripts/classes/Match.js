@@ -23,6 +23,8 @@ class Match {
   }
 
   startRound() {
+    Human.cleanUp();
+    PC.cleanUp();
     helpModeSelector.disabled = true;
     start.disabled = true;
     start.classList.add("hidden-small");
@@ -170,7 +172,11 @@ class Match {
       Human.matchesWon++
     }
     this.gameWon = true;
-    alert("Perdió " + player);
+    modalFinalMessage.innerText = "Perdió " + player
+    modalFinal.classList.add("openModal");
+    modalFinalClose.addEventListener("click", () => {
+      modalFinal.classList.remove("openModal");
+    });
     setTimeout(() => this.cleanup("Perdió " + player + ", partido terminado."), 2000);
   }
 
@@ -183,8 +189,6 @@ class Match {
     // humanContainer.innerHTML = "";
     pot.style.display = "none";
     discard.style.display = "none";
-    Human.cleanUp();
-    PC.cleanUp();
     //TODO: set scores
     start.disabled = false;
     dospa.disabled = true;
