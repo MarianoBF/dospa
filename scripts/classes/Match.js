@@ -111,15 +111,14 @@ class Match {
           gameStatus.innerText = "¡Sigue!";
         }
       }
-      if (!this.gameWon) {
         let wait = 1000 + 3000 * Math.random();
         setTimeout(() => {
+          if (!this.gameWon) {
           if (debug) console.log("pc waiting for you");
           PC.showBackOfCards();
           PC.PCPlay();
-        }, wait);
+        }}, wait);
       }
-    }
   }
 
   play(carta) {
@@ -139,13 +138,14 @@ class Match {
           Human.sendToDiscard(carta);
         }
       }
-      if (!this.gameWon && !another) {
+      if (!another) {
         let wait = 500 + 3000 * Math.random();
         setTimeout(() => {
+          if (!this.gameWon) {
           if (debug) console.log("pc waiting for you");
           PC.PCPlay();
           // PC.showPCCards();
-        }, wait);
+        }}, wait);
       }
     }
   }
@@ -189,7 +189,6 @@ class Match {
     // humanContainer.innerHTML = "";
     pot.style.display = "none";
     discard.style.display = "none";
-    //TODO: set scores
     start.disabled = false;
     dospa.disabled = true;
     helpModeSelector.disabled = false;
