@@ -26,14 +26,16 @@ class Player {
     const ref = match.getTopOfDiscardPile();
     const result = checkCard(card, ref);
     if (result) {
-      let index = this.hand.findIndex((handCard) => handCard.code === card.code);
-      if (debug) console.log("card", card.code)
+      let index = this.hand.findIndex(
+        (handCard) => handCard.code === card.code
+      );
+      if (debug) console.log("card", card.code);
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
       match.sendToDiscard(card);
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
-        return
+        return;
       }
       if (helpMode) {
         gameStatus.innerText = "Turno PC";
@@ -55,16 +57,18 @@ class Player {
     const ref = match.getTopOfDiscardPile();
     const result = checkCard(card, ref);
     if (result) {
-      let index = this.hand.findIndex((handCard) => handCard.code === card.code);
+      let index = this.hand.findIndex(
+        (handCard) => handCard.code === card.code
+      );
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
       match.sendToDiscard(card);
       match.pickUpMode = true;
-      match.pickUpCounter++
-      if (debug) console.log("pucounter", match.pickUpCounter)
+      match.pickUpCounter++;
+      if (debug) console.log("pucounter", match.pickUpCounter);
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
-        return
+        return;
       }
       if (helpMode) {
         gameStatus.innerText = "Turno PC con ronda de 2";
@@ -86,13 +90,15 @@ class Player {
     const ref = match.getTopOfDiscardPile();
     const result = checkCard(card, ref);
     if (result) {
-      let index = this.hand.findIndex((handCard) => handCard.code === card.code);
+      let index = this.hand.findIndex(
+        (handCard) => handCard.code === card.code
+      );
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
       match.sendToDiscard(card);
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
-        return 
+        return;
       }
       if (helpMode) {
         gameStatus.innerText = "Tirá de vuelta (o levantá si no tenés)";
@@ -119,5 +125,4 @@ class Player {
   cleanUp() {
     this.hand = [];
   }
-
 }
