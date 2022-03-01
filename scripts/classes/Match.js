@@ -89,7 +89,7 @@ class Match {
     if (!this.gameWon === true) {
       if (this.pickUpMode) {
         gameError.innerText = "Levantás 2 por cada ronda de 2 acumulada.";
-        numberToGet = (this.pickUpCounter - 1) * 2;
+        numberToGet = (this.pickUpCounter) * 2;
         match.pickUpMode = false;
         match.pickUpCounter = 0;
         setTimeout(() => {
@@ -196,6 +196,7 @@ class Match {
   cleanup(message) {
     humanMatchCounter.value = Human.matchesWon;
     pcMatchCounter.value = PC.matchesWon;
+    PC.hand.sort((a, b) => sortCards(a,b))
     PC.showPCCards();
     gameStatus.innerText = message;
     // pcContainer.innerHTML = "";

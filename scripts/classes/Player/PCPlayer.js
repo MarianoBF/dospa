@@ -25,7 +25,7 @@ class PCPlayer extends Player {
           pcContainer.removeChild(pcContainer.lastElementChild);
         } else {
           if (debug) console.log("no cards for pickup mode");
-          this.PCGetsFromPot((match.pickUpCounter - 1) * 2);
+          this.PCGetsFromPot((match.pickUpCounter) * 2);
           match.pickUpMode = false;
           match.pickUpCounter = 0;
           if (helpMode) {

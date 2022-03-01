@@ -24,15 +24,7 @@ function drawCards(cartas, container, type) {
   if (cartas.length) {
     if (debug) console.log("drawing", cartas);
     if (container == humanContainer) {
-      cartas.sort((a, b) => {
-        let prev = a.code[0];
-        prev =
-          prev === "0" ? "A" : prev === "A" ? "0" : prev === "K" ? "Z" : prev;
-        let next = b.code[0];
-        next =
-          next === "0" ? "A" : next === "A" ? "0" : next === "K" ? "Z" : next;
-        return prev === next ? 0 : prev > next ? 1 : -1;
-      });
+      cartas.sort((a, b) => sortCards(a,b));
     }
     cartas.forEach((carta) => {
       let img = document.createElement("IMG");
@@ -46,6 +38,16 @@ function drawCards(cartas, container, type) {
       container.append(img);
     });
   }
+}
+
+function sortCards(a,b) {
+  let prev = a.code[0];
+  prev =
+    prev === "0" ? "A" : prev === "A" ? "0" : prev === "K" ? "Z" : prev;
+  let next = b.code[0];
+  next =
+    next === "0" ? "A" : next === "A" ? "0" : next === "K" ? "Z" : next;
+  return prev === next ? 0 : prev > next ? 1 : -1;
 }
 
 function checkCard(card, ref) {

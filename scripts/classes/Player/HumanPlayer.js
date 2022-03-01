@@ -18,7 +18,7 @@ class HumanPlayer extends Player {
     gameError.style.display = "initial";
     gameError.innerText =
       "¡Jugada no válida! Se te agregan tres cartas más las rondas acumuladas como penalización.";
-    match.playGetFromPot(3 + (match.pickUpCounter - 1) * 2);
+    match.playGetFromPot(3 + (match.pickUpCounter) * 2);
     match.pickUpMode = false;
     match.pickUpCounter = 0;
     setTimeout(() => {
