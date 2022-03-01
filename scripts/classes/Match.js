@@ -88,9 +88,9 @@ class Match {
 
   playGetFromPot(numberToGet = 1) {
     if (!this.gameWon === true) {
-      if (this.pickUpMode) {
-        numberToGet = 1 + this.pickUpCounter;
-      }
+      // if (this.pickUpMode) {
+      //   numberToGet = 1 + this.pickUpCounter;
+      // }
       const cards = this.cards.splice(0,numberToGet)
       if (debug)  console.log("getFromPot", cards)
       for (const card of cards) { 

@@ -17,7 +17,7 @@ class Player {
 
   updateHand(cards) {
     this.hand = [...this.hand, ...cards];
-    if (this.hand.length > 12) {
+    if (this.hand.length > 20) {
       match.endMatchLose(this.name);
     }
   }
