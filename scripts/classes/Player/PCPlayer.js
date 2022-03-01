@@ -22,7 +22,7 @@ class PCPlayer extends Player {
           pcContainer.removeChild(pcContainer.lastElementChild);
         } else {
           if (debug) console.log("no cards for pickup mode");
-          this.PCGetsFromPot(match.pickUpCounter*2);
+          this.PCGetsFromPot((match.pickUpCounter -1)*2);
           match.pickUpMode = false;
           match.pickUpCounter = 0;
           if (helpMode) {
@@ -58,7 +58,7 @@ class PCPlayer extends Player {
 
         card = this.hand.find((handCard) => checkCard(handCard, top));
  
-        if (debug) console.log("first card is 2?", match.getTopOfDiscardPile().code[0]==='2', "currentCard", card.code, "isPickup mode active?", match.pickUpMode);
+        if (debug) console.log("first card is 2?", match.getTopOfDiscardPile().code[0]==='2', "currentCard", card ? card.code : "no card", "isPickup mode active?", match.pickUpMode);
        
         if (!card && !match.pickUpMode && match.getTopOfDiscardPile().code[0]==='2') {
           card = this.hand.pop()[0];

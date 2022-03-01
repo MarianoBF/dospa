@@ -88,9 +88,16 @@ class Match {
 
   playGetFromPot(numberToGet = 1) {
     if (!this.gameWon === true) {
-      // if (this.pickUpMode) {
-      //   numberToGet = 1 + this.pickUpCounter;
-      // }
+      if (this.pickUpMode) {
+        gameError.innerText =
+        "Levantás 2 por cada ronda de 2 acumulada.";
+        numberToGet = (this.pickUpCounter - 1)* 2;
+        match.pickUpMode = false;
+        match.pickUpCounter = 0;
+        setTimeout(() => {
+          gameError.innerText = "";
+        }, 2000);
+      }
       const cards = this.cards.splice(0,numberToGet)
       if (debug)  console.log("getFromPot", cards)
       for (const card of cards) { 
