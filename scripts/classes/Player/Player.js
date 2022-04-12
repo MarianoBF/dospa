@@ -32,7 +32,7 @@ class Player {
       if (debug) console.log("card", card.code);
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
-      match.sendToDiscard(card);
+      match.sendToDiscard(card, "Human");
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
         return;
@@ -62,7 +62,7 @@ class Player {
       );
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
-      match.sendToDiscard(card);
+      match.sendToDiscard(card, "Human");
       match.pickUpMode = true;
       match.pickUpCounter++;
       if (debug) console.log("pucounter", match.pickUpCounter);
@@ -95,7 +95,7 @@ class Player {
       );
       this.hand.splice(index, 1);
       document.getElementById(card.code).remove();
-      match.sendToDiscard(card);
+      match.sendToDiscard(card, "Human");
       if (this.hand.length === 0) {
         match.endMatchWin("Humano");
         return;

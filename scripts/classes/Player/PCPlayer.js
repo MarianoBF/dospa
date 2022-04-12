@@ -19,13 +19,13 @@ class PCPlayer extends Player {
           card = this.hand.find((item) => item.code[0] === top.code[0]);
           let index = pickUpAlternative;
           this.hand.splice(index, 1);
-          match.sendToDiscard(card);
+          match.sendToDiscard(card, "PC");
           match.pickUpCounter++;
           if (debug) console.log("pucounter increased", match.pickUpCounter);
           pcContainer.removeChild(pcContainer.lastElementChild);
         } else {
           if (debug) console.log("no cards for pickup mode");
-          this.PCGetsFromPot((match.pickUpCounter) * 2);
+          this.PCGetsFromPot(match.pickUpCounter * 2);
           match.pickUpMode = false;
           match.pickUpCounter = 0;
           if (helpMode) {
@@ -88,7 +88,7 @@ class PCPlayer extends Player {
             (handCard) => handCard.code === card.code
           );
           this.hand.splice(index, 1);
-          match.sendToDiscard(card);
+          match.sendToDiscard(card, "PC");
           pcContainer.removeChild(pcContainer.lastElementChild);
           if (this.hand.length === 0) {
             match.endMatchWin("PC");
@@ -121,6 +121,8 @@ class PCPlayer extends Player {
           gameStatus.innerText = "¡Sigue!";
         }
       }
+    } else {
+      if (debug) console.log("play on ended", match.gameWon);
     }
   }
 

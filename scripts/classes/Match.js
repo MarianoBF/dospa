@@ -63,14 +63,15 @@ class Match {
       Human.showHumanCards();
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
-      this.sendToDiscard(this.cards.pop());
+      this.sendToDiscard(this.cards.pop(), 'Human');
       dospa.disabled = false;
       // if (debug) console.log("cards", this.cards);
     }, 2500);
     gameStatus.innerText = "Trayendo el mazo...";
   }
 
-  sendToDiscard(card) {
+  sendToDiscard(card, owner) {
+    card.owner = owner
     this.discard.push(card);
     discardImage.src = card.image;
     if (debug) console.log("discard", this.discard);
@@ -150,7 +151,6 @@ class Match {
           if (!this.gameWon) {
             if (debug) console.log("pc waiting for you");
             PC.PCPlay();
-            // PC.showPCCards();
           }
         }, wait);
       }
