@@ -53,7 +53,12 @@ class PCPlayer extends Player {
           setTimeout(() => {
             gameError.innerText = "";
           }, 2000);
-          match.playGetFromPot(2);
+          const owner = match.discard[match.discard.length - 1].owner;
+          if (owner === "Human") {
+            match.playGetFromPot(2);
+          } else {
+            this.PCGetsFromPot(2);
+          }
           this.hand.splice(coincidence, 1);
           this.showBackOfCards();
           setTimeout(() => {

@@ -18,7 +18,7 @@ class HumanPlayer extends Player {
     gameError.style.display = "initial";
     gameError.innerText =
       "¡Jugada no válida! Se te agregan tres cartas más las rondas acumuladas como penalización.";
-    match.playGetFromPot(3 + (match.pickUpCounter) * 2);
+    match.playGetFromPot(3 + match.pickUpCounter * 2);
     match.pickUpMode = false;
     match.pickUpCounter = 0;
     setTimeout(() => {
@@ -38,12 +38,19 @@ class HumanPlayer extends Player {
         gameError.innerText = "";
       }, 2000);
     } else {
-      PC.PCGetsFromPot(2);
+      const owner = match.discard[match.discard.length - 1].owner;
+      if (owner === "Human") {
+        match.playGetFromPot(2);
+        gameStatus.innerText =
+          "¡Bien jugado el dospa, pero la carta era tuya! Sigue el juego...";
+      } else {
+        PC.PCGetsFromPot(2);
+        gameStatus.innerText = "¡Bien jugado el dospa! Sigue el juego...";
+      }
       if (debug) console.log("hand", this.hand, coincidence);
       this.hand.splice(coincidence, 1);
       Human.showHumanCards();
       if (debug) console.log("hand", this.hand);
-      gameStatus.innerText = "¡Bien jugado el dospa! Sigue el juego...";
     }
   }
 }
