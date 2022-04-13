@@ -55,7 +55,7 @@ class PCPlayer extends Player {
           }, 2000);
           const owner = match.discard[match.discard.length - 1].owner;
           if (owner === "Human") {
-            match.playGetFromPot(2);
+            match.penalizeHumanFromPot(2);
           } else {
             this.PCGetsFromPot(2);
           }

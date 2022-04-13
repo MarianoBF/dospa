@@ -40,12 +40,12 @@ class Match {
       humanContainer.innerHTML = "";
 
       // ***********For Dospacheck*****************
-      // const testDospa = this.cards.splice(0, 2)
-      // const HumanTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
-      // const PCTestDospa = [...testDospa, ...this.cards.splice(0, 5)]
-      // if (debug) console.log(testDospa)
-      // Human.populateHand(HumanTestDospa);
-      // PC.populateHand(PCTestDospa);
+      const testDospa = this.cards.splice(0, 5);
+      const HumanTestDospa = [...testDospa, ...this.cards.splice(0, 2)];
+      const PCTestDospa = [...testDospa, ...this.cards.splice(0, 2)];
+      if (debug) console.log(testDospa);
+      Human.populateHand(HumanTestDospa);
+      PC.populateHand(PCTestDospa);
 
       // ***********For PickUpCheck*****************
       // const testPickup = this.cards.filter(item=>item.code[0]==='2')
@@ -58,12 +58,12 @@ class Match {
       // ************FAST WIN ************************
       // Human.populateHand([this.cards.find(item=>item.code[0]==='4')]);
 
-      Human.populateHand(this.cards.splice(0, 7));
-      PC.populateHand(this.cards.splice(0, 7));
+      // Human.populateHand(this.cards.splice(0, 7));
+      // PC.populateHand(this.cards.splice(0, 7));
       Human.showHumanCards();
       PC.showBackOfCards();
       gameStatus.innerText = "Cartas en la mesa, ¡jugá!";
-      this.sendToDiscard(this.cards.pop(), 'Human');
+      this.sendToDiscard(this.cards.pop(), "Human");
       dospa.disabled = false;
       // if (debug) console.log("cards", this.cards);
     }, 2500);
@@ -71,7 +71,7 @@ class Match {
   }
 
   sendToDiscard(card, owner) {
-    card.owner = owner
+    card.owner = owner;
     this.discard.push(card);
     discardImage.src = card.image;
     if (debug) console.log("discard", this.discard);
@@ -90,7 +90,7 @@ class Match {
     if (!this.gameWon === true) {
       if (this.pickUpMode) {
         gameError.innerText = "Levantás 2 por cada ronda de 2 acumulada.";
-        numberToGet = (this.pickUpCounter) * 2;
+        numberToGet = this.pickUpCounter * 2;
         match.pickUpMode = false;
         match.pickUpCounter = 0;
         setTimeout(() => {
@@ -125,6 +125,18 @@ class Match {
           PC.PCPlay();
         }
       }, wait);
+    }
+  }
+
+  penalizeHumanFromPot(numberToGet = 1) {
+    if (!this.gameWon === true) {
+      const cards = this.cards.splice(0, numberToGet);
+      if (debug) console.log("penalizeFromPot", cards);
+      for (const card of cards) {
+        const cardToAdd = [];
+        cardToAdd.push(card);
+        Human.getFromPot(cardToAdd);
+      }
     }
   }
 
@@ -196,7 +208,7 @@ class Match {
   cleanup(message) {
     humanMatchCounter.value = Human.matchesWon;
     pcMatchCounter.value = PC.matchesWon;
-    PC.hand.sort((a, b) => sortCards(a,b))
+    PC.hand.sort((a, b) => sortCards(a, b));
     PC.showPCCards();
     gameStatus.innerText = message;
     // pcContainer.innerHTML = "";
